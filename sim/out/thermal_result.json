@@ -1,0 +1,44 @@
+{
+  "baseline_apex_C": 34.66376606848994,
+  "published_corneal_range_C": [
+    34.0,
+    35.0
+  ],
+  "verification_pass": true,
+  "clinical_npdr_deficit_C": {
+    "mean": 0.61,
+    "sd": 0.12,
+    "source": "Chandrasekar 2021, PMID 34464609"
+  },
+  "perfusion_loss_matching_clinical_pct": 40.535093947689184,
+  "sweep": [
+    {
+      "perfusion_fraction": 1.0,
+      "deficit_C": -0.0
+    },
+    {
+      "perfusion_fraction": 0.9,
+      "deficit_C": 0.10369776378638562
+    },
+    {
+      "perfusion_fraction": 0.8,
+      "deficit_C": 0.23066841116315118
+    },
+    {
+      "perfusion_fraction": 0.7,
+      "deficit_C": 0.3898165218953267
+    },
+    {
+      "perfusion_fraction": 0.6,
+      "deficit_C": 0.5952569808657557
+    },
+    {
+      "perfusion_fraction": 0.5,
+      "deficit_C": 0.8707790494279664
+    },
+    {
+      "perfusion_fraction": 0.4,
+      "deficit_C": 1.2598492120176346
+    }
+  ]
+}

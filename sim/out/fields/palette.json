@@ -1,0 +1,59 @@
+{
+  "thermal": {
+    "cmap": "inferno",
+    "vmin": 32.5,
+    "vmax": 35.8,
+    "unit": "degC"
+  },
+  "optical": {
+    "cmap": "magma",
+    "scale": "log",
+    "unit": "a.u."
+  },
+  "electrical": {
+    "cmap": "batlow",
+    "scale": "log",
+    "unit": "a.u."
+  },
+  "accent": "#b04a20",
+  "slices": {
+    "slice_T_z0": {
+      "plane": "z",
+      "value_mm": 0.0,
+      "u_axis": "x",
+      "v_axis": "y",
+      "u_range_mm": [
+        -1.0318135235110049e-14,
+        71.74999999999999
+      ],
+      "v_range_mm": [
+        -115.00000000000001,
+        17.749999999999986
+      ],
+      "res_mm": 0.25,
+      "T_range": [
+        31.0,
+        38.6
+      ]
+    },
+    "slice_T_x31": {
+      "plane": "x",
+      "value_mm": 31.5,
+      "u_axis": "y",
+      "v_axis": "z",
+      "u_range_mm": [
+        -50.0,
+        7.75
+      ],
+      "v_range_mm": [
+        -32.0,
+        31.75
+      ],
+      "res_mm": 0.25,
+      "T_range": [
+        31.0,
+        38.6
+      ]
+    }
+  }
+}

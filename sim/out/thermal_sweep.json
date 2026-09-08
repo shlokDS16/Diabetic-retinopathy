@@ -1,0 +1,43 @@
+{
+  "baseline_T_apex_C": 34.66376606848994,
+  "h_rad_linearised": 6.407656540319238,
+  "verification_pass": true,
+  "sweep": [
+    {
+      "perfusion_fraction": 1.0,
+      "h_bl": 65.0,
+      "T_apex_C": 34.66376606848994,
+      "delta_C": 0.0
+    },
+    {
+      "perfusion_fraction": 0.9,
+      "h_bl": 58.5,
+      "T_apex_C": 34.560068304703556,
+      "delta_C": -0.10369776378638562
+    },
+    {
+      "perfusion_fraction": 0.8,
+      "h_bl": 52.0,
+      "T_apex_C": 34.43309765732679,
+      "delta_C": -0.23066841116315118
+    },
+    {
+      "perfusion_fraction": 0.7,
+      "h_bl": 45.5,
+      "T_apex_C": 34.273949546594615,
+      "delta_C": -0.3898165218953267
+    },
+    {
+      "perfusion_fraction": 0.6,
+      "h_bl": 39.0,
+      "T_apex_C": 34.068509087624186,
+      "delta_C": -0.5952569808657557
+    },
+    {
+      "perfusion_fraction": 0.5,
+      "h_bl": 32.5,
+      "T_apex_C": 33.792987019061975,
+      "delta_C": -0.8707790494279664
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "nphoton": 30000000.0,
+  "ppg": {
+    "pd_spacing_mm": 3.0,
+    "src_grid": [
+      103.0,
+      89.0,
+      89.0
+    ],
+    "det_grid": [
+      102.0,
+      101.0,
+      89.0
+    ],
+    "res_mm": 0.25,
+    "wavelengths": {
+      "660": {
+        "n_detected": 359563,
+        "detected_fraction": 0.011985433333333333,
+        "mean_partial_path_mm": {
+          "artery_temporal": 0.033738356083631516,
+          "skin": 9.315207481384277,
+          "fat_subcutaneous": 1.5815892219543457,
+          "muscle": 0.028354082256555557,
+          "bone_cortical": 0.0012148265959694982,
+          "brain_grey": 7.337018814723706e-07
+        },
+        "attenuation_share": {
+          "artery_temporal": 0.007028980180621147,
+          "skin": 0.8474439382553101,
+          "fat_subcutaneous": 0.1438838690519333,
+          "muscle": 0.0015752615872770548,
+          "bone_cortical": 6.799805123591796e-05,
+          "brain_grey": 5.095264654642051e-08
+        },
+        "arterial_attenuation_share": 0.007028980180621147,
+        "dermal_blood_attenuation_share": 0.0550181120634079,
+        "ac_dc_perfusion_index": 0.004686892032623291,
+        "ac_dc_artery_only": 0.0005059242248535156,
+        "banana_weighted_depth_mm": 1.07098904172332
+      },
+      "880": {
+        "n_detected": 474722,
+        "detected_fraction": 0.015824066666666668,
+        "mean_partial_path_mm": {
+          "artery_temporal": 0.021054552868008614,
+          "skin": 7.827380180358887,
+          "fat_subcutaneous": 1.9403133392333984,
+          "muscle": 0.055639032274484634,
+          "bone_cortical": 0.0031329705379903316,
+          "brain_grey": 7.099406502675265e-06
+        },
+        "attenuation_share": {
+          "artery_temporal": 0.021362757310271263,
+          "skin": 0.8353240489959717,
+          "fat_subcutaneous": 0.1406226009130478,
+          "muscle": 0.00241943565197289,
+          "bone_cortical": 0.00027076838887296617,
+          "brain_grey": 3.8589269024669193e-07
+        },
+        "arterial_attenuation_share": 0.021362757310271263,
+        "dermal_blood_attenuation_share": 0.19241437315940857,
+        "ac_dc_perfusion_index": 0.014226853847503662,
+        "ac_dc_artery_only": 0.001178443431854248,
+        "banana_weighted_depth_mm": 1.2490841470623477
+      }
+    },
+    "spacing_sweep_880": [
+      {
+        "spacing_mm": 3.0,
+        "detected_fraction": 0.015824066666666668,
+        "ac_dc_total": 0.014226853847503662,
+        "ac_dc_artery": 0.001178443431854248,
+        "artery_share_of_pulse": 0.08228418976068497
+      },
+      {
+        "spacing_mm": 6.0,
+        "detected_fraction": 0.002592633333333333,
+        "ac_dc_total": 0.025915980339050293,
+        "ac_dc_artery": 0.004689037799835205,
+        "artery_share_of_pulse": 0.17899847030639648
+      },
+      {
+        "spacing_mm": 9.0,
+        "detected_fraction": 0.0008236,
+        "ac_dc_total": 0.03354912996292114,
+        "ac_dc_artery": 0.009536206722259521,
+        "artery_share_of_pulse": 0.28079304099082947
+      },
+      {
+        "spacing_mm": 12.0,
+        "detected_fraction": 0.0004222,
+        "ac_dc_total": 0.0386199951171875,
+        "ac_dc_artery": 0.01381826400756836,
+        "artery_share_of_pulse": 0.35329341888427734
+      }
+    ]
+  },
+  "led": {
+    "led_to_cornea_mm": 22.41093483101497,
+    "cone_half_angle_deg": 30.0,
+    "irradiance_W_m2_per_W_led": 2365.2536939559463,
+    "iec62471_cornea_limit_W_m2": 100.0,
+    "max_led_optical_power_mW": 42.278762847103934,
+    "absorbed_fraction_per_tissue": {
+      "artery_angular": 0.0004294145619496703,
+      "cornea": 0.014023619703948498,
+      "sclera": 0.04394162818789482,
+      "lens": 0.011931336484849453,
+      "aqueous": 0.06697479635477066,
+      "vitreous": 0.1345435082912445,
+      "eyelid": 0.14094674587249756,
+      "orbital_fat": 0.08948466181755066,
+      "skin": 0.006767597980797291,
+      "fat_subcutaneous": 0.005933388601988554,
+      "muscle": 0.0031368278432637453,
+      "bone_cortical": 0.005595804192125797,
+      "brain_grey": 0.003689174074679613
+    },
+    "absorbed_total_fraction": 0.5273985039675608
+  }
+}

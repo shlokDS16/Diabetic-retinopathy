@@ -1,0 +1,65 @@
+{
+  "n_total": 43,
+  "n_diabetic": 24,
+  "n_control": 19,
+  "diabetes_auc_loo": 0.6315789473684211,
+  "diabetes_auc_ci95": [
+    0.45552536231884055,
+    0.7982547514619883
+  ],
+  "features": [
+    "hr_mean",
+    "sdnn",
+    "rmssd",
+    "pnn50",
+    "cvnn",
+    "lf_hf"
+  ],
+  "dr_exploratory": [
+    {
+      "feature": "hr_mean",
+      "dr_mean": 67.98491694581014,
+      "nodr_mean": 64.46267208395437,
+      "cohens_d": 0.34283232149614995,
+      "mannwhitney_p": 0.32068254332314083
+    },
+    {
+      "feature": "sdnn",
+      "dr_mean": 56.21232159228,
+      "nodr_mean": 77.61454686696746,
+      "cohens_d": -0.6430963914347503,
+      "mannwhitney_p": 0.0870004043232255
+    },
+    {
+      "feature": "rmssd",
+      "dr_mean": 31.343266725320234,
+      "nodr_mean": 39.65843041213569,
+      "cohens_d": -0.3299654371772923,
+      "mannwhitney_p": 0.04941613083185071
+    },
+    {
+      "feature": "pnn50",
+      "dr_mean": 6.173266659600175,
+      "nodr_mean": 13.40454300746816,
+      "cohens_d": -0.6217277245836869,
+      "mannwhitney_p": 0.022358587644138145
+    },
+    {
+      "feature": "cvnn",
+      "dr_mean": 6.06381511312763,
+      "nodr_mean": 8.02215908796388,
+      "cohens_d": -0.6494331977103525,
+      "mannwhitney_p": 0.09508178122538397
+    },
+    {
+      "feature": "lf_hf",
+      "dr_mean": 3.35341630618298,
+      "nodr_mean": 5.819093005393034,
+      "cohens_d": -0.5120842726201831,
+      "mannwhitney_p": 0.1568828738571885
+    }
+  ],
+  "baseline_minutes": 5.0,
+  "artefact_rule": "RR in 300-2000 ms; successive diff < 20%",
+  "seed": 20260828
+}

@@ -1,0 +1,43 @@
+{
+  "mms_coarse": {
+    "nodes": 17905,
+    "h_mm": 4.381806640218351,
+    "L2_rel": 0.008543215937040674,
+    "Linf_K": 0.3814915062568325,
+    "time_s": 1.6731212139129639
+  },
+  "mms_full": {
+    "nodes": 122279,
+    "h_mm": 2.2762983196296815,
+    "L2_rel": 0.0026505735647262395,
+    "Linf_K": 0.09043502044695728,
+    "time_s": 81.68016624450684
+  },
+  "observed_order": 1.7870554712587614,
+  "gci": {
+    "corneal_apex_C": {
+      "fine": 32.96302482403881,
+      "coarse": 32.97160887915638,
+      "richardson_extrapolated": 32.959163624234854,
+      "GCI_fine_percent": 0.03514119069384135
+    },
+    "canthus_skin_C": {
+      "fine": 33.908205188616726,
+      "coarse": 33.899176138686755,
+      "richardson_extrapolated": 33.91226655184681,
+      "GCI_fine_percent": 0.03593257036899618
+    },
+    "thermopile_DCI_C": {
+      "fine": 33.779952848708035,
+      "coarse": 33.77800859785759,
+      "richardson_extrapolated": 33.780827393535596,
+      "GCI_fine_percent": 0.007766838794702528
+    },
+    "deficit_50pct_choroid_C": {
+      "fine": -0.5434674054764344,
+      "coarse": -0.5515162953961052,
+      "richardson_extrapolated": -0.5398469287024312,
+      "GCI_fine_percent": 1.9985430979964074
+    }
+  }
+}

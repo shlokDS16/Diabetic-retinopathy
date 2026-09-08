@@ -1,0 +1,26 @@
+# Python 3.14 was used; versions marked == were verified in the working environment on 2026-09-08
+numpy==2.4.2
+scipy==1.17.1
+pandas==2.3.3
+scikit-learn==1.8.0
+matplotlib==3.10.8
+SciencePlots
+cmcrameri==1.8
+adjustText==1.4.0
+Pillow
+torch
+timm
+statsmodels
+neurokit2
+wfdb
+scikit-fem
+gmsh
+pmcx==0.7.1
+pyvista
+trimesh
+build123d
+imageio
+imageio-ffmpeg
+jupyter
+nbformat
+nbconvert

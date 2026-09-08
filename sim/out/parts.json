@@ -1,0 +1,1975 @@
+{
+  "name": "nrdi_glasses",
+  "units": "mm",
+  "up": "+Z",
+  "coordinate_system": {
+    "origin": "midpoint between pupils, at the corneal plane",
+    "x": "wearer's left",
+    "y": "anterior",
+    "z": "superior",
+    "units": "mm"
+  },
+  "note": "GLB is written in project coordinates (mm, +Z up, +Y anterior). glTF viewers assume metres and +Y up: scale by 0.001 and rotate -90 deg about X on the viewer side. Node name == geometry name == label.",
+  "assembled_bbox_mm": {
+    "min": [
+      -74.0,
+      -147.205,
+      -22.205
+    ],
+    "max": [
+      78.335,
+      21.383,
+      24.0
+    ]
+  },
+  "overlap_policy": "electronics sit inside the temple envelope at their sensor_layout poses without pockets; temple<->electronics overlap accepted; electronics do not overlap each other",
+  "notes": [
+    "sensor_layout.py places 'mcu' at x=+68 and 'battery' at x=-68. Under its own convention (+X = wearer's left) that is temple_L for the PCB and temple_R for the battery, although the notes there say 'Right temple PCB' / 'Left temple'. Poses are the source of truth, so the bodies sit where the numbers put them; labels pcb_R / battery follow the bill of materials; 'side' is geometric.",
+    "Lenses are cut around the nasal sensor pods (camera, IR LED, thermopile + its leads) and the temple hinge corner because those poses lie in the lens plane.",
+    "v3 contacts (2026-09-04): no electrode arms. browpad_L/R is a silicone strip on the posterior face of the upper rim carrying elec_*_brow_med/brow_lat; nosepad_L/R sits on the nasal sidewall through elec_*_nose_sup/nose_inf. The electrode discs are embedded in those pads (disc body inside the pad, face + button exposed). Rims are centred on FRONT_Y (y 11.4..14.6) so their posterior face is at 11.4.",
+    "Residual overlaps inherited from frame.py's pod placement: rim<->cam barrel (camera pose is in the rim's nasal corner), temple<->ppg package/flex (inside the temple, only the skin face shows), cam<->irled. Electrodes overlap only their pads."
+  ],
+  "explode_orders": {
+    "0": "lenses",
+    "1": "rims, bridge, temples",
+    "2": "sensors, electrodes (away from the skin), brow bumpers (+Z)",
+    "3": "electronics, flex/FPC, power, actuator, nosepads"
+  },
+  "parts": [
+    {
+      "label": "rim_L",
+      "category": "frame",
+      "side": "L",
+      "pos_mm": [
+        35.0,
+        13.0,
+        -0.0
+      ],
+      "mount_mm": [
+        35.0,
+        13.0,
+        -0.0
+      ],
+      "bbox_mm": {
+        "min": [
+          9.0,
+          11.4,
+          -20.0
+        ],
+        "max": [
+          61.0,
+          14.6,
+          20.0
+        ]
+      },
+      "explode": {
+        "dir": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "dist_mm": 12.0,
+        "order": 1
+      },
+      "callout": "Lens rim (PLA)",
+      "part_number": "NRDI-F01",
+      "color": [
+        0.12,
+        0.12,
+        0.13
+      ]
+    },
+    {
+      "label": "rim_R",
+      "category": "frame",
+      "side": "R",
+      "pos_mm": [
+        -35.0,
+        13.0,
+        -0.0
+      ],
+      "mount_mm": [
+        -35.0,
+        13.0,
+        -0.0
+      ],
+      "bbox_mm": {
+        "min": [
+          -61.0,
+          11.4,
+          -20.0
+        ],
+        "max": [
+          -9.0,
+          14.6,
+          20.0
+        ]
+      },
+      "explode": {
+        "dir": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "dist_mm": 12.0,
+        "order": 1
+      },
+      "callout": "Lens rim (PLA)",
+      "part_number": "NRDI-F01",
+      "color": [
+        0.12,
+        0.12,
+        0.13
+      ]
+    },
+    {
+      "label": "bridge",
+      "category": "frame",
+      "side": "C",
+      "pos_mm": [
+        -0.0,
+        13.3,
+        12.5
+      ],
+      "mount_mm": [
+        -0.0,
+        13.3,
+        12.5
+      ],
+      "bbox_mm": {
+        "min": [
+          -13.5,
+          11.4,
+          9.0
+        ],
+        "max": [
+          13.5,
+          15.2,
+          16.0
+        ]
+      },
+      "explode": {
+        "dir": [
+          0.0,
+          0.948683,
+          0.316228
+        ],
+        "dist_mm": 18.974,
+        "order": 1
+      },
+      "callout": "Bridge (PLA)",
+      "part_number": "NRDI-F02",
+      "color": [
+        0.12,
+        0.12,
+        0.13
+      ]
+    },
+    {
+      "label": "nosepad_L",
+      "category": "frame",
+      "side": "L",
+      "pos_mm": [
+        8.52,
+        9.818,
+        -5.697
+      ],
+      "mount_mm": [
+        8.52,
+        9.818,
+        -5.697
+      ],
+      "bbox_mm": {
+        "min": [
+          6.207,
+          6.362,
+          -13.922
+        ],
+        "max": [
+          11.484,
+          15.063,
+          2.114
+        ]
+      },
+      "explode": {
+        "dir": [
+          0.0,
+          -1.0,
+          0.0
+        ],
+        "dist_mm": 8.0,
+        "order": 3
+      },
+      "callout": "Silicone nose pad with 2 dry electrodes",
+      "part_number": "NRDI-NP01",
+      "color": [
+        0.1,
+        0.1,
+        0.11
+      ]
+    },
+    {
+      "label": "nosepad_R",
+      "category": "frame",
+      "side": "R",
+      "pos_mm": [
+        -8.52,
+        9.818,
+        -5.697
+      ],
+      "mount_mm": [
+        -8.52,
+        9.818,
+        -5.697
+      ],
+      "bbox_mm": {
+        "min": [
+          -11.484,
+          6.362,
+          -13.922
+        ],
+        "max": [
+          -6.207,
+          15.063,
+          2.114
+        ]
+      },
+      "explode": {
+        "dir": [
+          0.0,
+          -1.0,
+          0.0
+        ],
+        "dist_mm": 8.0,
+        "order": 3
+      },
+      "callout": "Silicone nose pad with 2 dry electrodes",
+      "part_number": "NRDI-NP01",
+      "color": [
+        0.1,
+        0.1,
+        0.11
+      ]
+    },
+    {
+      "label": "browpad_L",
+      "category": "frame",
+      "side": "L",
+      "pos_mm": [
+        35.963,
+        8.696,
+        17.471
+      ],
+      "mount_mm": [
+        35.963,
+        8.696,
+        17.471
+      ],
+      "bbox_mm": {
+        "min": [
+          15.0,
+          4.1,
+          14.0
+        ],
+        "max": [
+          50.0,
+          11.4,
+          22.0
+        ]
+      },
+      "explode": {
+        "dir": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "dist_mm": 16.0,
+        "order": 2
+      },
+      "callout": "Silicone brow bumper with 2 dry electrodes",
+      "part_number": "NRDI-BP01",
+      "color": [
+        0.1,
+        0.1,
+        0.11
+      ]
+    },
+    {
+      "label": "browpad_R",
+      "category": "frame",
+      "side": "R",
+      "pos_mm": [
+        -35.963,
+        8.696,
+        17.471
+      ],
+      "mount_mm": [
+        -35.963,
+        8.696,
+        17.471
+      ],
+      "bbox_mm": {
+        "min": [
+          -50.0,
+          4.1,
+          14.0
+        ],
+        "max": [
+          -15.0,
+          11.4,
+          22.0
+        ]
+      },
+      "explode": {
+        "dir": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "dist_mm": 16.0,
+        "order": 2
+      },
+      "callout": "Silicone brow bumper with 2 dry electrodes",
+      "part_number": "NRDI-BP01",
+      "color": [
+        0.1,
+        0.1,
+        0.11
+      ]
+    },
+    {
+      "label": "temple_L",
+      "category": "frame",
+      "side": "L",
+      "pos_mm": [
+        66.333,
+        -72.667,
+        8.457
+      ],
+      "mount_mm": [
+        66.333,
+        -72.667,
+        8.457
+      ],
+      "bbox_mm": {
+        "min": [
+          54.036,
+          -147.205,
+          -22.205
+        ],
+        "max": [
+          74.0,
+          13.654,
+          14.25
+        ]
+      },
+      "explode": {
+        "dir": [
+          0.894427,
+          -0.447214,
+          0.0
+        ],
+        "dist_mm": 22.361,
+        "order": 1
+      },
+      "callout": "Temple arm (PLA)",
+      "part_number": "NRDI-F04",
+      "color": [
+        0.12,
+        0.12,
+        0.13
+      ]
+    },
+    {
+      "label": "temple_R",
+      "category": "frame",
+      "side": "R",
+      "pos_mm": [
+        -66.333,
+        -72.667,
+        8.457
+      ],
+      "mount_mm": [
+        -66.333,
+        -72.667,
+        8.457
+      ],
+      "bbox_mm": {
+        "min": [
+          -74.0,
+          -147.205,
+          -22.205
+        ],
+        "max": [
+          -54.036,
+          13.654,
+          14.25
+        ]
+      },
+      "explode": {
+        "dir": [
+          -0.894427,
+          -0.447214,
+          0.0
+        ],
+        "dist_mm": 22.361,
+        "order": 1
+      },
+      "callout": "Temple arm (PLA)",
+      "part_number": "NRDI-F04",
+      "color": [
+        0.12,
+        0.12,
+        0.13
+      ]
+    },
+    {
+      "label": "hinge_L",
+      "category": "frame",
+      "side": "L",
+      "pos_mm": [
+        60.5,
+        11.8,
+        12.0
+      ],
+      "mount_mm": [
+        60.5,
+        11.8,
+        12.0
+      ],
+      "bbox_mm": {
+        "min": [
+          58.2,
+          9.5,
+          7.75
+        ],
+        "max": [
+          62.8,
+          14.1,
+          16.25
+        ]
+      },
+      "explode": {
+        "dir": [
+          0.928477,
+          0.371391,
+          0.0
+        ],
+        "dist_mm": 10.0,
+        "order": 1
+      },
+      "callout": "Stainless hinge + screws",
+      "part_number": "NRDI-H01",
+      "color": [
+        0.7,
+        0.7,
+        0.72
+      ]
+    },
+    {
+      "label": "hinge_R",
+      "category": "frame",
+      "side": "R",
+      "pos_mm": [
+        -60.5,
+        11.8,
+        12.0
+      ],
+      "mount_mm": [
+        -60.5,
+        11.8,
+        12.0
+      ],
+      "bbox_mm": {
+        "min": [
+          -62.8,
+          9.5,
+          7.75
+        ],
+        "max": [
+          -58.2,
+          14.1,
+          16.25
+        ]
+      },
+      "explode": {
+        "dir": [
+          -0.928477,
+          0.371391,
+          0.0
+        ],
+        "dist_mm": 10.0,
+        "order": 1
+      },
+      "callout": "Stainless hinge + screws",
+      "part_number": "NRDI-H01",
+      "color": [
+        0.7,
+        0.7,
+        0.72
+      ]
+    },
+    {
+      "label": "cam_L",
+      "category": "sensor",
+      "side": "L",
+      "pos_mm": [
+        14.496,
+        14.453,
+        5.101
+      ],
+      "mount_mm": [
+        11.5,
+        17.0,
+        6.0
+      ],
+      "bbox_mm": {
+        "min": [
+          8.566,
+          9.235,
+          0.805
+        ],
+        "max": [
+          20.042,
+          20.302,
+          9.781
+        ]
+      },
+      "explode": {
+        "dir": [
+          0.742781,
+          -0.631364,
+          -0.222834
+        ],
+        "dist_mm": 14.0,
+        "order": 2
+      },
+      "callout": "OV7670 pupillography camera, M7 lens",
+      "part_number": "OV7670",
+      "color": [
+        0.2,
+        0.2,
+        0.25
+      ]
+    },
+    {
+      "label": "camboard_L",
+      "category": "electronics",
+      "side": "L",
+      "pos_mm": [
+        11.054,
+        17.379,
+        6.134
+      ],
+      "mount_mm": [
+        11.054,
+        17.379,
+        6.134
+      ],
+      "bbox_mm": {
+        "min": [
+          7.339,
+          13.375,
+          2.101
+        ],
+        "max": [
+          14.77,
+          21.383,
+          10.167
+        ]
+      },
+      "explode": {
+        "dir": [
+          -0.742781,
+          0.631364,
+          0.222834
+        ],
+        "dist_mm": 8.0,
+        "order": 3
+      },
+      "callout": "OV7670 module board (8x8 mm)",
+      "part_number": "OV7670-MOD",
+      "color": [
+        0.05,
+        0.05,
+        0.05
+      ]
+    },
+    {
+      "label": "cam_fpc_L",
+      "category": "electronics",
+      "side": "L",
+      "pos_mm": [
+        11.666,
+        16.885,
+        12.601
+      ],
+      "mount_mm": [
+        11.666,
+        16.885,
+        12.601
+      ],
+      "bbox_mm": {
+        "min": [
+          9.881,
+          15.117,
+          10.167
+        ],
+        "max": [
+          13.432,
+          18.799,
+          15.075
+        ]
+      },
+      "explode": {
+        "dir": [
+          -0.742781,
+          0.631364,
+          0.222834
+        ],
+        "dist_mm": 8.0,
+        "order": 3
+      },
+      "callout": "Camera FPC, 4 mm, to the bridge",
+      "part_number": "OV7670-FPC",
+      "color": [
+        0.72,
+        0.42,
+        0.12
+      ]
+    },
+    {
+      "label": "irled_L",
+      "category": "sensor",
+      "side": "L",
+      "pos_mm": [
+        18.852,
+        13.956,
+        5.234
+      ],
+      "mount_mm": [
+        17.0,
+        16.0,
+        6.0
+      ],
+      "bbox_mm": {
+        "min": [
+          17.344,
+          12.858,
+          3.884
+        ],
+        "max": [
+          19.988,
+          15.408,
+          6.829
+        ]
+      },
+      "explode": {
+        "dir": [
+          0.647006,
+          -0.713937,
+          -0.267726
+        ],
+        "dist_mm": 14.0,
+        "order": 2
+      },
+      "callout": "SFH 4726AS 940 nm IR illuminator dome",
+      "part_number": "SFH 4726AS",
+      "color": [
+        0.5,
+        0.1,
+        0.1
+      ]
+    },
+    {
+      "label": "irled_pkg_L",
+      "category": "sensor",
+      "side": "L",
+      "pos_mm": [
+        17.744,
+        15.179,
+        5.692
+      ],
+      "mount_mm": [
+        17.0,
+        16.0,
+        6.0
+      ],
+      "bbox_mm": {
+        "min": [
+          15.387,
+          12.844,
+          3.624
+        ],
+        "max": [
+          20.101,
+          17.514,
+          7.76
+        ]
+      },
+      "explode": {
+        "dir": [
+          0.647006,
+          -0.713937,
+          -0.267726
+        ],
+        "dist_mm": 14.0,
+        "order": 2
+      },
+      "callout": "SFH 4726AS package, 3.75 mm OSLON",
+      "part_number": "SFH 4726AS",
+      "color": [
+        0.05,
+        0.05,
+        0.05
+      ]
+    },
+    {
+      "label": "thermo_L",
+      "category": "sensor",
+      "side": "L",
+      "pos_mm": [
+        17.121,
+        7.586,
+        -1.379
+      ],
+      "mount_mm": [
+        17.5,
+        11.0,
+        -1.0
+      ],
+      "bbox_mm": {
+        "min": [
+          11.309,
+          2.753,
+          -7.191
+        ],
+        "max": [
+          22.593,
+          11.714,
+          4.093
+        ]
+      },
+      "explode": {
+        "dir": [
+          -0.109764,
+          -0.987878,
+          -0.109764
+        ],
+        "dist_mm": 14.0,
+        "order": 2
+      },
+      "callout": "MLX90614 thermopile, TO-39",
+      "part_number": "MLX90614ESF-BAA",
+      "color": [
+        0.2,
+        0.2,
+        0.25
+      ]
+    },
+    {
+      "label": "thermo_pins_L",
+      "category": "electronics",
+      "side": "L",
+      "pos_mm": [
+        17.774,
+        13.47,
+        -0.726
+      ],
+      "mount_mm": [
+        17.774,
+        13.47,
+        -0.726
+      ],
+      "bbox_mm": {
+        "min": [
+          15.491,
+          10.571,
+          -3.03
+        ],
+        "max": [
+          20.058,
+          16.369,
+          1.579
+        ]
+      },
+      "explode": {
+        "dir": [
+          -0.109764,
+          -0.987878,
+          -0.109764
+        ],
+        "dist_mm": 14.0,
+        "order": 2
+      },
+      "callout": "TO-39 gold leads (4)",
+      "part_number": "MLX90614ESF-BAA",
+      "color": [
+        0.85,
+        0.68,
+        0.25
+      ]
+    },
+    {
+      "label": "ppg_L",
+      "category": "sensor",
+      "side": "L",
+      "pos_mm": [
+        62.542,
+        -78.003,
+        12.0
+      ],
+      "mount_mm": [
+        68.0,
+        -78.0,
+        12.0
+      ],
+      "bbox_mm": {
+        "min": [
+          61.75,
+          -80.8,
+          10.35
+        ],
+        "max": [
+          63.3,
+          -75.2,
+          13.65
+        ]
+      },
+      "explode": {
+        "dir": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "dist_mm": 18.0,
+        "order": 2
+      },
+      "callout": "MAX30102 PPG module",
+      "part_number": "MAX30102",
+      "color": [
+        0.05,
+        0.05,
+        0.05
+      ]
+    },
+    {
+      "label": "ppg_flex_L",
+      "category": "electronics",
+      "side": "L",
+      "pos_mm": [
+        63.7,
+        -78.0,
+        12.0
+      ],
+      "mount_mm": [
+        63.7,
+        -78.0,
+        12.0
+      ],
+      "bbox_mm": {
+        "min": [
+          63.3,
+          -82.0,
+          9.0
+        ],
+        "max": [
+          64.1,
+          -74.0,
+          15.0
+        ]
+      },
+      "explode": {
+        "dir": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "dist_mm": 22.0,
+        "order": 3
+      },
+      "callout": "PPG flex tab, 8x6 mm",
+      "part_number": "NRDI-FLEX-PPG",
+      "color": [
+        0.72,
+        0.42,
+        0.12
+      ]
+    },
+    {
+      "label": "elec_L_brow_med",
+      "category": "sensor",
+      "side": "L",
+      "pos_mm": [
+        21.5,
+        10.321,
+        21.0
+      ],
+      "mount_mm": [
+        21.5,
+        10.0,
+        21.0
+      ],
+      "bbox_mm": {
+        "min": [
+          18.5,
+          9.7,
+          18.0
+        ],
+        "max": [
+          24.5,
+          10.8,
+          24.0
+        ]
+      },
+      "explode": {
+        "dir": [
+          -0.0,
+          1.0,
+          -0.0
+        ],
+        "dist_mm": 10.0,
+        "order": 2
+      },
+      "callout": "Ag/AgCl dry electrode, 6 mm disc",
+      "part_number": "Ag/AgCl 6 mm",
+      "color": [
+        0.16,
+        0.16,
+        0.17
+      ]
+    },
+    {
+      "label": "elec_L_brow_lat",
+      "category": "sensor",
+      "side": "L",
+      "pos_mm": [
+        41.5,
+        4.421,
+        21.0
+      ],
+      "mount_mm": [
+        41.5,
+        4.1,
+        21.0
+      ],
+      "bbox_mm": {
+        "min": [
+          38.5,
+          3.8,
+          18.0
+        ],
+        "max": [
+          44.5,
+          4.9,
+          24.0
+        ]
+      },
+      "explode": {
+        "dir": [
+          -0.0,
+          1.0,
+          -0.0
+        ],
+        "dist_mm": 10.0,
+        "order": 2
+      },
+      "callout": "Ag/AgCl dry electrode, 6 mm disc",
+      "part_number": "Ag/AgCl 6 mm",
+      "color": [
+        0.16,
+        0.16,
+        0.17
+      ]
+    },
+    {
+      "label": "elec_L_nose_sup",
+      "category": "sensor",
+      "side": "L",
+      "pos_mm": [
+        7.803,
+        10.694,
+        -2.0
+      ],
+      "mount_mm": [
+        7.5,
+        10.8,
+        -2.0
+      ],
+      "bbox_mm": {
+        "min": [
+          6.543,
+          7.737,
+          -5.0
+        ],
+        "max": [
+          9.212,
+          13.599,
+          1.0
+        ]
+      },
+      "explode": {
+        "dir": [
+          0.943983,
+          -0.329994,
+          -0.0
+        ],
+        "dist_mm": 10.0,
+        "order": 2
+      },
+      "callout": "Ag/AgCl dry electrode, 6 mm disc",
+      "part_number": "Ag/AgCl 6 mm",
+      "color": [
+        0.16,
+        0.16,
+        0.17
+      ]
+    },
+    {
+      "label": "elec_L_nose_inf",
+      "category": "sensor",
+      "side": "L",
+      "pos_mm": [
+        8.803,
+        11.194,
+        -10.0
+      ],
+      "mount_mm": [
+        8.5,
+        11.3,
+        -10.0
+      ],
+      "bbox_mm": {
+        "min": [
+          7.543,
+          8.237,
+          -13.0
+        ],
+        "max": [
+          10.212,
+          14.099,
+          -7.0
+        ]
+      },
+      "explode": {
+        "dir": [
+          0.943983,
+          -0.329994,
+          -0.0
+        ],
+        "dist_mm": 10.0,
+        "order": 2
+      },
+      "callout": "Ag/AgCl dry electrode, 6 mm disc",
+      "part_number": "Ag/AgCl 6 mm",
+      "color": [
+        0.16,
+        0.16,
+        0.17
+      ]
+    },
+    {
+      "label": "cam_R",
+      "category": "sensor",
+      "side": "R",
+      "pos_mm": [
+        -14.496,
+        14.453,
+        5.101
+      ],
+      "mount_mm": [
+        -11.5,
+        17.0,
+        6.0
+      ],
+      "bbox_mm": {
+        "min": [
+          -20.042,
+          9.235,
+          0.805
+        ],
+        "max": [
+          -8.566,
+          20.302,
+          9.781
+        ]
+      },
+      "explode": {
+        "dir": [
+          -0.742781,
+          -0.631364,
+          -0.222834
+        ],
+        "dist_mm": 14.0,
+        "order": 2
+      },
+      "callout": "OV7670 pupillography camera, M7 lens",
+      "part_number": "OV7670",
+      "color": [
+        0.2,
+        0.2,
+        0.25
+      ]
+    },
+    {
+      "label": "camboard_R",
+      "category": "electronics",
+      "side": "R",
+      "pos_mm": [
+        -11.054,
+        17.379,
+        6.134
+      ],
+      "mount_mm": [
+        -11.054,
+        17.379,
+        6.134
+      ],
+      "bbox_mm": {
+        "min": [
+          -14.77,
+          13.375,
+          2.101
+        ],
+        "max": [
+          -7.339,
+          21.383,
+          10.167
+        ]
+      },
+      "explode": {
+        "dir": [
+          0.742781,
+          0.631364,
+          0.222834
+        ],
+        "dist_mm": 8.0,
+        "order": 3
+      },
+      "callout": "OV7670 module board (8x8 mm)",
+      "part_number": "OV7670-MOD",
+      "color": [
+        0.05,
+        0.05,
+        0.05
+      ]
+    },
+    {
+      "label": "cam_fpc_R",
+      "category": "electronics",
+      "side": "R",
+      "pos_mm": [
+        -11.666,
+        16.885,
+        12.601
+      ],
+      "mount_mm": [
+        -11.666,
+        16.885,
+        12.601
+      ],
+      "bbox_mm": {
+        "min": [
+          -13.432,
+          15.117,
+          10.167
+        ],
+        "max": [
+          -9.881,
+          18.799,
+          15.075
+        ]
+      },
+      "explode": {
+        "dir": [
+          0.742781,
+          0.631364,
+          0.222834
+        ],
+        "dist_mm": 8.0,
+        "order": 3
+      },
+      "callout": "Camera FPC, 4 mm, to the bridge",
+      "part_number": "OV7670-FPC",
+      "color": [
+        0.72,
+        0.42,
+        0.12
+      ]
+    },
+    {
+      "label": "irled_R",
+      "category": "sensor",
+      "side": "R",
+      "pos_mm": [
+        -18.852,
+        13.956,
+        5.234
+      ],
+      "mount_mm": [
+        -17.0,
+        16.0,
+        6.0
+      ],
+      "bbox_mm": {
+        "min": [
+          -19.988,
+          12.858,
+          3.884
+        ],
+        "max": [
+          -17.344,
+          15.408,
+          6.829
+        ]
+      },
+      "explode": {
+        "dir": [
+          -0.647006,
+          -0.713937,
+          -0.267726
+        ],
+        "dist_mm": 14.0,
+        "order": 2
+      },
+      "callout": "SFH 4726AS 940 nm IR illuminator dome",
+      "part_number": "SFH 4726AS",
+      "color": [
+        0.5,
+        0.1,
+        0.1
+      ]
+    },
+    {
+      "label": "irled_pkg_R",
+      "category": "sensor",
+      "side": "R",
+      "pos_mm": [
+        -17.744,
+        15.179,
+        5.692
+      ],
+      "mount_mm": [
+        -17.0,
+        16.0,
+        6.0
+      ],
+      "bbox_mm": {
+        "min": [
+          -20.101,
+          12.844,
+          3.624
+        ],
+        "max": [
+          -15.387,
+          17.514,
+          7.76
+        ]
+      },
+      "explode": {
+        "dir": [
+          -0.647006,
+          -0.713937,
+          -0.267726
+        ],
+        "dist_mm": 14.0,
+        "order": 2
+      },
+      "callout": "SFH 4726AS package, 3.75 mm OSLON",
+      "part_number": "SFH 4726AS",
+      "color": [
+        0.05,
+        0.05,
+        0.05
+      ]
+    },
+    {
+      "label": "thermo_R",
+      "category": "sensor",
+      "side": "R",
+      "pos_mm": [
+        -17.121,
+        7.586,
+        -1.379
+      ],
+      "mount_mm": [
+        -17.5,
+        11.0,
+        -1.0
+      ],
+      "bbox_mm": {
+        "min": [
+          -22.593,
+          2.753,
+          -7.191
+        ],
+        "max": [
+          -11.309,
+          11.714,
+          4.093
+        ]
+      },
+      "explode": {
+        "dir": [
+          0.109764,
+          -0.987878,
+          -0.109764
+        ],
+        "dist_mm": 14.0,
+        "order": 2
+      },
+      "callout": "MLX90614 thermopile, TO-39",
+      "part_number": "MLX90614ESF-BAA",
+      "color": [
+        0.2,
+        0.2,
+        0.25
+      ]
+    },
+    {
+      "label": "thermo_pins_R",
+      "category": "electronics",
+      "side": "R",
+      "pos_mm": [
+        -17.774,
+        13.47,
+        -0.726
+      ],
+      "mount_mm": [
+        -17.774,
+        13.47,
+        -0.726
+      ],
+      "bbox_mm": {
+        "min": [
+          -20.058,
+          10.571,
+          -3.03
+        ],
+        "max": [
+          -15.491,
+          16.369,
+          1.579
+        ]
+      },
+      "explode": {
+        "dir": [
+          0.109764,
+          -0.987878,
+          -0.109764
+        ],
+        "dist_mm": 14.0,
+        "order": 2
+      },
+      "callout": "TO-39 gold leads (4)",
+      "part_number": "MLX90614ESF-BAA",
+      "color": [
+        0.85,
+        0.68,
+        0.25
+      ]
+    },
+    {
+      "label": "ppg_R",
+      "category": "sensor",
+      "side": "R",
+      "pos_mm": [
+        -62.542,
+        -78.003,
+        12.0
+      ],
+      "mount_mm": [
+        -68.0,
+        -78.0,
+        12.0
+      ],
+      "bbox_mm": {
+        "min": [
+          -63.3,
+          -80.8,
+          10.35
+        ],
+        "max": [
+          -61.75,
+          -75.2,
+          13.65
+        ]
+      },
+      "explode": {
+        "dir": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "dist_mm": 18.0,
+        "order": 2
+      },
+      "callout": "MAX30102 PPG module",
+      "part_number": "MAX30102",
+      "color": [
+        0.05,
+        0.05,
+        0.05
+      ]
+    },
+    {
+      "label": "ppg_flex_R",
+      "category": "electronics",
+      "side": "R",
+      "pos_mm": [
+        -63.7,
+        -78.0,
+        12.0
+      ],
+      "mount_mm": [
+        -63.7,
+        -78.0,
+        12.0
+      ],
+      "bbox_mm": {
+        "min": [
+          -64.1,
+          -82.0,
+          9.0
+        ],
+        "max": [
+          -63.3,
+          -74.0,
+          15.0
+        ]
+      },
+      "explode": {
+        "dir": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "dist_mm": 22.0,
+        "order": 3
+      },
+      "callout": "PPG flex tab, 8x6 mm",
+      "part_number": "NRDI-FLEX-PPG",
+      "color": [
+        0.72,
+        0.42,
+        0.12
+      ]
+    },
+    {
+      "label": "elec_R_brow_med",
+      "category": "sensor",
+      "side": "R",
+      "pos_mm": [
+        -21.5,
+        10.321,
+        21.0
+      ],
+      "mount_mm": [
+        -21.5,
+        10.0,
+        21.0
+      ],
+      "bbox_mm": {
+        "min": [
+          -24.5,
+          9.7,
+          18.0
+        ],
+        "max": [
+          -18.5,
+          10.8,
+          24.0
+        ]
+      },
+      "explode": {
+        "dir": [
+          -0.0,
+          1.0,
+          -0.0
+        ],
+        "dist_mm": 10.0,
+        "order": 2
+      },
+      "callout": "Ag/AgCl dry electrode, 6 mm disc",
+      "part_number": "Ag/AgCl 6 mm",
+      "color": [
+        0.16,
+        0.16,
+        0.17
+      ]
+    },
+    {
+      "label": "elec_R_brow_lat",
+      "category": "sensor",
+      "side": "R",
+      "pos_mm": [
+        -41.5,
+        4.421,
+        21.0
+      ],
+      "mount_mm": [
+        -41.5,
+        4.1,
+        21.0
+      ],
+      "bbox_mm": {
+        "min": [
+          -44.5,
+          3.8,
+          18.0
+        ],
+        "max": [
+          -38.5,
+          4.9,
+          24.0
+        ]
+      },
+      "explode": {
+        "dir": [
+          -0.0,
+          1.0,
+          -0.0
+        ],
+        "dist_mm": 10.0,
+        "order": 2
+      },
+      "callout": "Ag/AgCl dry electrode, 6 mm disc",
+      "part_number": "Ag/AgCl 6 mm",
+      "color": [
+        0.16,
+        0.16,
+        0.17
+      ]
+    },
+    {
+      "label": "elec_R_nose_sup",
+      "category": "sensor",
+      "side": "R",
+      "pos_mm": [
+        -7.803,
+        10.694,
+        -2.0
+      ],
+      "mount_mm": [
+        -7.5,
+        10.8,
+        -2.0
+      ],
+      "bbox_mm": {
+        "min": [
+          -9.212,
+          7.737,
+          -5.0
+        ],
+        "max": [
+          -6.543,
+          13.599,
+          1.0
+        ]
+      },
+      "explode": {
+        "dir": [
+          -0.943983,
+          -0.329994,
+          -0.0
+        ],
+        "dist_mm": 10.0,
+        "order": 2
+      },
+      "callout": "Ag/AgCl dry electrode, 6 mm disc",
+      "part_number": "Ag/AgCl 6 mm",
+      "color": [
+        0.16,
+        0.16,
+        0.17
+      ]
+    },
+    {
+      "label": "elec_R_nose_inf",
+      "category": "sensor",
+      "side": "R",
+      "pos_mm": [
+        -8.803,
+        11.194,
+        -10.0
+      ],
+      "mount_mm": [
+        -8.5,
+        11.3,
+        -10.0
+      ],
+      "bbox_mm": {
+        "min": [
+          -10.212,
+          8.237,
+          -13.0
+        ],
+        "max": [
+          -7.543,
+          14.099,
+          -7.0
+        ]
+      },
+      "explode": {
+        "dir": [
+          -0.943983,
+          -0.329994,
+          -0.0
+        ],
+        "dist_mm": 10.0,
+        "order": 2
+      },
+      "callout": "Ag/AgCl dry electrode, 6 mm disc",
+      "part_number": "Ag/AgCl 6 mm",
+      "color": [
+        0.16,
+        0.16,
+        0.17
+      ]
+    },
+    {
+      "label": "lens_L",
+      "category": "lens",
+      "side": "L",
+      "pos_mm": [
+        35.555,
+        13.001,
+        -0.158
+      ],
+      "mount_mm": [
+        35.555,
+        13.001,
+        -0.158
+      ],
+      "bbox_mm": {
+        "min": [
+          13.1,
+          12.1,
+          -15.9
+        ],
+        "max": [
+          56.9,
+          13.9,
+          15.9
+        ]
+      },
+      "explode": {
+        "dir": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "dist_mm": 25.0,
+        "order": 0
+      },
+      "callout": "Plano lens, CR-39, 1.8 mm",
+      "part_number": "CR39-PLANO-52x40",
+      "color": [
+        0.85,
+        0.9,
+        0.95
+      ]
+    },
+    {
+      "label": "lens_R",
+      "category": "lens",
+      "side": "R",
+      "pos_mm": [
+        -35.555,
+        13.001,
+        -0.158
+      ],
+      "mount_mm": [
+        -35.555,
+        13.001,
+        -0.158
+      ],
+      "bbox_mm": {
+        "min": [
+          -56.9,
+          12.1,
+          -15.9
+        ],
+        "max": [
+          -13.1,
+          13.9,
+          15.9
+        ]
+      },
+      "explode": {
+        "dir": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "dist_mm": 25.0,
+        "order": 0
+      },
+      "callout": "Plano lens, CR-39, 1.8 mm",
+      "part_number": "CR39-PLANO-52x40",
+      "color": [
+        0.85,
+        0.9,
+        0.95
+      ]
+    },
+    {
+      "label": "pcb_R",
+      "category": "electronics",
+      "side": "L",
+      "pos_mm": [
+        68.0,
+        -40.0,
+        11.2
+      ],
+      "mount_mm": [
+        68.0,
+        -40.0,
+        11.2
+      ],
+      "bbox_mm": {
+        "min": [
+          58.768,
+          -70.475,
+          10.4
+        ],
+        "max": [
+          77.232,
+          -9.525,
+          12.0
+        ]
+      },
+      "explode": {
+        "dir": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "dist_mm": 22.0,
+        "order": 3
+      },
+      "callout": "Main PCB, 4-layer FR4, 60x12 mm",
+      "part_number": "NRDI-PCB-R revA",
+      "color": [
+        0.05,
+        0.35,
+        0.15
+      ]
+    },
+    {
+      "label": "mcu",
+      "category": "electronics",
+      "side": "L",
+      "pos_mm": [
+        67.784,
+        -38.03,
+        13.424
+      ],
+      "mount_mm": [
+        67.784,
+        -38.03,
+        13.424
+      ],
+      "bbox_mm": {
+        "min": [
+          57.665,
+          -53.655,
+          12.0
+        ],
+        "max": [
+          78.335,
+          -26.345,
+          15.1
+        ]
+      },
+      "explode": {
+        "dir": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "dist_mm": 30.0,
+        "order": 3
+      },
+      "callout": "ESP32-S3-WROOM-1 module",
+      "part_number": "ESP32-S3-WROOM-1",
+      "color": [
+        0.05,
+        0.05,
+        0.05
+      ]
+    },
+    {
+      "label": "i2c_mux",
+      "category": "electronics",
+      "side": "L",
+      "pos_mm": [
+        70.179,
+        -59.881,
+        12.5
+      ],
+      "mount_mm": [
+        70.179,
+        -59.881,
+        12.5
+      ],
+      "bbox_mm": {
+        "min": [
+          67.567,
+          -63.997,
+          12.0
+        ],
+        "max": [
+          72.79,
+          -55.765,
+          13.0
+        ]
+      },
+      "explode": {
+        "dir": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "dist_mm": 36.0,
+        "order": 3
+      },
+      "callout": "TCA9548A I2C multiplexer, TSSOP-24",
+      "part_number": "TCA9548APWR",
+      "color": [
+        0.05,
+        0.05,
+        0.05
+      ]
+    },
+    {
+      "label": "afe",
+      "category": "electronics",
+      "side": "L",
+      "pos_mm": [
+        65.821,
+        -20.119,
+        12.875
+      ],
+      "mount_mm": [
+        65.821,
+        -20.119,
+        12.875
+      ],
+      "bbox_mm": {
+        "min": [
+          62.849,
+          -23.489,
+          12.0
+        ],
+        "max": [
+          68.793,
+          -16.749,
+          13.75
+        ]
+      },
+      "explode": {
+        "dir": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "dist_mm": 36.0,
+        "order": 3
+      },
+      "callout": "AD5933 impedance AFE, SSOP-16",
+      "part_number": "AD5933YRSZ",
+      "color": [
+        0.05,
+        0.05,
+        0.05
+      ]
+    },
+    {
+      "label": "battery",
+      "category": "power",
+      "side": "R",
+      "pos_mm": [
+        -68.0,
+        -100.0,
+        12.0
+      ],
+      "mount_mm": [
+        -68.0,
+        -100.0,
+        12.0
+      ],
+      "bbox_mm": {
+        "min": [
+          -74.0,
+          -117.0,
+          9.5
+        ],
+        "max": [
+          -62.0,
+          -83.0,
+          14.5
+        ]
+      },
+      "explode": {
+        "dir": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "dist_mm": 22.0,
+        "order": 3
+      },
+      "callout": "LiPo 250 mAh, 34x12x5 mm",
+      "part_number": "LP401234",
+      "color": [
+        0.7,
+        0.7,
+        0.72
+      ]
+    },
+    {
+      "label": "haptic",
+      "category": "actuator",
+      "side": "L",
+      "pos_mm": [
+        68.0,
+        -120.0,
+        4.0
+      ],
+      "mount_mm": [
+        68.0,
+        -120.0,
+        4.0
+      ],
+      "bbox_mm": {
+        "min": [
+          66.2,
+          -125.0,
+          -1.0
+        ],
+        "max": [
+          69.8,
+          -115.0,
+          9.0
+        ]
+      },
+      "explode": {
+        "dir": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "dist_mm": 18.0,
+        "order": 3
+      },
+      "callout": "Coin LRA 10 mm",
+      "part_number": "C10-100",
+      "color": [
+        0.7,
+        0.7,
+        0.72
+      ]
+    }
+  ]
+}

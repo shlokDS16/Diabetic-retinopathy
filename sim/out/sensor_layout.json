@@ -1,0 +1,367 @@
+{
+  "coordinate_system": {
+    "origin": "midpoint between pupils, at the corneal plane",
+    "x": "wearer's left",
+    "y": "anterior",
+    "z": "superior",
+    "units": "mm"
+  },
+  "anthropometry": {
+    "ipd_mm": 63.0,
+    "vertex_distance_mm": 13.0,
+    "pantoscopic_tilt_deg": 9.0,
+    "face_form_wrap_deg": 6.0,
+    "medial_canthus_offset_mm": 15.0
+  },
+  "frame": {
+    "lens_w_mm": 52.0,
+    "lens_h_mm": 40.0,
+    "bridge_w_mm": 18.0,
+    "rim_thickness_mm": 3.2,
+    "temple_length_mm": 145.0,
+    "pcb_mm": [
+      60.0,
+      12.0,
+      1.6
+    ],
+    "battery_mm": [
+      34.0,
+      12.0,
+      5.0
+    ]
+  },
+  "derived": {
+    "camera_working_distance_mm": 26.93,
+    "camera_vergence_deg": 50.85,
+    "thermopile_standoff_mm": 9.11,
+    "thermopile_spot_diameter_mm": 18.22,
+    "led_to_cornea_mm": 22.41,
+    "electrode_drive_separation_mm": 45.85,
+    "electrode_sense_separation_mm": 26.94
+  },
+  "sensors": [
+    {
+      "name": "cam_L",
+      "kind": "camera",
+      "part": "OV7670",
+      "pos": [
+        11.5,
+        17.0,
+        6.0
+      ],
+      "axis": [
+        0.7427813527082074,
+        -0.6313641498019763,
+        -0.22283440581246225
+      ],
+      "fov_deg": 25.0,
+      "note": "DVP/SCCB. Working distance set by vertex distance + bridge offset."
+    },
+    {
+      "name": "irled_L",
+      "kind": "ir_led",
+      "part": "SFH 4726AS",
+      "pos": [
+        17.0,
+        16.0,
+        6.0
+      ],
+      "axis": [
+        0.6470055849670823,
+        -0.7139371972050563,
+        -0.2677264489518961
+      ],
+      "fov_deg": 60.0,
+      "note": "940 nm. Invisible to the eye so it does not itself drive the reflex. Irradiance at the corneal plane must be checked against IEC 62471."
+    },
+    {
+      "name": "thermo_L",
+      "kind": "thermopile",
+      "part": "MLX90614ESF-BAA",
+      "pos": [
+        17.5,
+        11.0,
+        -1.0
+      ],
+      "axis": [
+        -0.10976425998969035,
+        -0.9878783399072131,
+        -0.10976425998969035
+      ],
+      "fov_deg": 90.0,
+      "note": "I2C, address collision -> TCA9548A. 90 deg FOV means the spot grows fast with standoff; this drives the standoff constraint."
+    },
+    {
+      "name": "ppg_L",
+      "kind": "ppg",
+      "part": "MAX30102",
+      "pos": [
+        68.0,
+        -78.0,
+        12.0
+      ],
+      "axis": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "fov_deg": 0.0,
+      "note": "660 nm + 880 nm. Faces medially into the skin. The LED-photodiode separation inside this package is what the Monte Carlo model sizes."
+    },
+    {
+      "name": "elec_L_brow_med",
+      "kind": "electrode",
+      "part": "Ag/AgCl",
+      "pos": [
+        21.5,
+        10.0,
+        21.0
+      ],
+      "axis": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "fov_deg": 0.0,
+      "note": "Dry Ag/AgCl-coated silicone contact, 6 mm. Local tetrapolar set per eye (drive brow_lat->nose_inf, sense brow_med->nose_sup)."
+    },
+    {
+      "name": "elec_L_brow_lat",
+      "kind": "electrode",
+      "part": "Ag/AgCl",
+      "pos": [
+        41.5,
+        4.1,
+        21.0
+      ],
+      "axis": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "fov_deg": 0.0,
+      "note": "Dry Ag/AgCl-coated silicone contact, 6 mm. Local tetrapolar set per eye (drive brow_lat->nose_inf, sense brow_med->nose_sup)."
+    },
+    {
+      "name": "elec_L_nose_sup",
+      "kind": "electrode",
+      "part": "Ag/AgCl",
+      "pos": [
+        7.5,
+        10.8,
+        -2.0
+      ],
+      "axis": [
+        -0.944,
+        0.33,
+        0.0
+      ],
+      "fov_deg": 0.0,
+      "note": "Dry Ag/AgCl-coated silicone contact, 6 mm. Local tetrapolar set per eye (drive brow_lat->nose_inf, sense brow_med->nose_sup)."
+    },
+    {
+      "name": "elec_L_nose_inf",
+      "kind": "electrode",
+      "part": "Ag/AgCl",
+      "pos": [
+        8.5,
+        11.3,
+        -10.0
+      ],
+      "axis": [
+        -0.944,
+        0.33,
+        0.0
+      ],
+      "fov_deg": 0.0,
+      "note": "Dry Ag/AgCl-coated silicone contact, 6 mm. Local tetrapolar set per eye (drive brow_lat->nose_inf, sense brow_med->nose_sup)."
+    },
+    {
+      "name": "cam_R",
+      "kind": "camera",
+      "part": "OV7670",
+      "pos": [
+        -11.5,
+        17.0,
+        6.0
+      ],
+      "axis": [
+        -0.7427813527082074,
+        -0.6313641498019763,
+        -0.22283440581246225
+      ],
+      "fov_deg": 25.0,
+      "note": "DVP/SCCB. Working distance set by vertex distance + bridge offset."
+    },
+    {
+      "name": "irled_R",
+      "kind": "ir_led",
+      "part": "SFH 4726AS",
+      "pos": [
+        -17.0,
+        16.0,
+        6.0
+      ],
+      "axis": [
+        -0.6470055849670823,
+        -0.7139371972050563,
+        -0.2677264489518961
+      ],
+      "fov_deg": 60.0,
+      "note": "940 nm. Invisible to the eye so it does not itself drive the reflex. Irradiance at the corneal plane must be checked against IEC 62471."
+    },
+    {
+      "name": "thermo_R",
+      "kind": "thermopile",
+      "part": "MLX90614ESF-BAA",
+      "pos": [
+        -17.5,
+        11.0,
+        -1.0
+      ],
+      "axis": [
+        0.10976425998969035,
+        -0.9878783399072131,
+        -0.10976425998969035
+      ],
+      "fov_deg": 90.0,
+      "note": "I2C, address collision -> TCA9548A. 90 deg FOV means the spot grows fast with standoff; this drives the standoff constraint."
+    },
+    {
+      "name": "ppg_R",
+      "kind": "ppg",
+      "part": "MAX30102",
+      "pos": [
+        -68.0,
+        -78.0,
+        12.0
+      ],
+      "axis": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "fov_deg": 0.0,
+      "note": "660 nm + 880 nm. Faces medially into the skin. The LED-photodiode separation inside this package is what the Monte Carlo model sizes."
+    },
+    {
+      "name": "elec_R_brow_med",
+      "kind": "electrode",
+      "part": "Ag/AgCl",
+      "pos": [
+        -21.5,
+        10.0,
+        21.0
+      ],
+      "axis": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "fov_deg": 0.0,
+      "note": "Dry Ag/AgCl-coated silicone contact, 6 mm. Local tetrapolar set per eye (drive brow_lat->nose_inf, sense brow_med->nose_sup)."
+    },
+    {
+      "name": "elec_R_brow_lat",
+      "kind": "electrode",
+      "part": "Ag/AgCl",
+      "pos": [
+        -41.5,
+        4.1,
+        21.0
+      ],
+      "axis": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "fov_deg": 0.0,
+      "note": "Dry Ag/AgCl-coated silicone contact, 6 mm. Local tetrapolar set per eye (drive brow_lat->nose_inf, sense brow_med->nose_sup)."
+    },
+    {
+      "name": "elec_R_nose_sup",
+      "kind": "electrode",
+      "part": "Ag/AgCl",
+      "pos": [
+        -7.5,
+        10.8,
+        -2.0
+      ],
+      "axis": [
+        0.944,
+        0.33,
+        0.0
+      ],
+      "fov_deg": 0.0,
+      "note": "Dry Ag/AgCl-coated silicone contact, 6 mm. Local tetrapolar set per eye (drive brow_lat->nose_inf, sense brow_med->nose_sup)."
+    },
+    {
+      "name": "elec_R_nose_inf",
+      "kind": "electrode",
+      "part": "Ag/AgCl",
+      "pos": [
+        -8.5,
+        11.3,
+        -10.0
+      ],
+      "axis": [
+        0.944,
+        0.33,
+        0.0
+      ],
+      "fov_deg": 0.0,
+      "note": "Dry Ag/AgCl-coated silicone contact, 6 mm. Local tetrapolar set per eye (drive brow_lat->nose_inf, sense brow_med->nose_sup)."
+    },
+    {
+      "name": "mcu",
+      "kind": "processor",
+      "part": "ESP32-S3",
+      "pos": [
+        68.0,
+        -40.0,
+        12.0
+      ],
+      "axis": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "fov_deg": 0.0,
+      "note": "Right temple PCB."
+    },
+    {
+      "name": "haptic",
+      "kind": "actuator",
+      "part": "LRA C10-100",
+      "pos": [
+        68.0,
+        -120.0,
+        4.0
+      ],
+      "axis": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "fov_deg": 0.0,
+      "note": "Near the ear hook, where skin coupling is best."
+    },
+    {
+      "name": "battery",
+      "kind": "power",
+      "part": "LiPo 250mAh",
+      "pos": [
+        -68.0,
+        -100.0,
+        12.0
+      ],
+      "axis": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "fov_deg": 0.0,
+      "note": "Left temple, counterweights the right-side PCB."
+    }
+  ]
+}

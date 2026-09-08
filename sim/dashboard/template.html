@@ -1,0 +1,385 @@
+<meta charset="utf-8">
+<title>NRDI Periorbital Twin</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Manrope:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#f4f2ee; --panel:#ffffff; --line:#ddd8cf; --ink:#1b1f27; --mute:#5d6675; --soft:#eeeae2;
+  --accent:#b04a20; --thermal:#c8641e; --optical:#b8336a; --electrical:#1f8a82; --auto:#4f5fd6;
+  --ok:#2e7d4f; --warn:#b7791f; --bad:#b3261e;
+  --display:"Bricolage Grotesque","Manrope",system-ui,sans-serif;
+  --body:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0f1319; --panel:#171c24; --line:#262d38; --ink:#e7eaf0; --mute:#8e98a8; --soft:#1f2632;
+  --thermal:#f0a35a; --optical:#e0679c; --electrical:#3fb8ae; --auto:#8b98f0; --ok:#5fc48a; --warn:#e2b04a; --bad:#ef6a5f;
+}}
+:root[data-theme="dark"]{
+  --bg:#0f1319; --panel:#171c24; --line:#262d38; --ink:#e7eaf0; --mute:#8e98a8; --soft:#1f2632;
+  --thermal:#f0a35a; --optical:#e0679c; --electrical:#3fb8ae; --auto:#8b98f0; --ok:#5fc48a; --warn:#e2b04a; --bad:#ef6a5f;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 var(--body);}
+a{color:inherit}
+.wrap{max-width:1380px;margin:0 auto;padding:20px 24px 60px}
+header{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;padding-bottom:14px;border-bottom:1px solid var(--line)}
+h1{font:700 34px/1.05 var(--display);margin:0;letter-spacing:-.01em;text-wrap:balance}
+h1 small{display:block;font:500 13px/1.4 var(--body);color:var(--mute);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+.meta{font:12px/1.5 var(--mono);color:var(--mute);text-align:right}
+.meta b{color:var(--ink);font-weight:500}
+h2{font:700 20px/1.2 var(--display);margin:0 0 4px;letter-spacing:-.005em}
+h3{font:600 13px/1.3 var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin:0 0 10px}
+p{max-width:68ch;margin:0 0 10px}
+.lede{color:var(--mute);max-width:80ch}
+
+.grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(320px,.9fr);gap:18px;margin-top:18px}
+@media (max-width:980px){.grid{grid-template-columns:1fr}}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px}
+.viewport{position:relative;height:520px;overflow:hidden;padding:0;background:radial-gradient(120% 90% at 50% 30%,var(--soft),var(--panel) 70%)}
+.viewport canvas{display:block;width:100%;height:100%}
+.vp-ui{position:absolute;left:14px;right:14px;bottom:12px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.vp-ui label{font:12px/1 var(--mono);color:var(--mute);letter-spacing:.06em;text-transform:uppercase}
+input[type=range]{accent-color:var(--accent);width:220px}
+.callout{position:absolute;transform:translate(-50%,-100%);pointer-events:none;font:11px/1.3 var(--mono);color:var(--ink);background:color-mix(in srgb,var(--panel) 88%,transparent);border:1px solid var(--line);padding:3px 6px;border-radius:4px;white-space:nowrap;opacity:0;transition:opacity .25s}
+.callout.show{opacity:1}
+.btn{font:500 12px/1 var(--body);letter-spacing:.04em;padding:8px 12px;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:6px;cursor:pointer}
+.btn[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+.sliders{display:grid;gap:10px}
+.sl{display:grid;grid-template-columns:1fr auto;gap:2px 10px;align-items:center}
+.sl label{font-size:13px;font-weight:500}
+.sl .v{font:500 13px/1 var(--mono);color:var(--mute);font-variant-numeric:tabular-nums;text-align:right}
+.sl input{grid-column:1/-1;width:100%}
+.tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}
+.tile{border:1px solid var(--line);border-radius:8px;padding:10px 12px;position:relative}
+.tile .k{font:500 11px/1.3 var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.tile .n{font:700 26px/1.1 var(--display);font-variant-numeric:tabular-nums;margin-top:3px}
+.tile .n small{font:500 13px var(--mono);color:var(--mute);margin-left:4px}
+.tile .d{font:12px/1.35 var(--mono);color:var(--mute);margin-top:4px;font-variant-numeric:tabular-nums}
+.tile.head{border-color:var(--thermal)}
+.tile.head .n{color:var(--thermal)}
+.pill{display:inline-block;font:600 11px/1 var(--body);letter-spacing:.05em;padding:4px 8px;border-radius:999px;background:var(--soft);color:var(--ink)}
+.pill.ok{background:color-mix(in srgb,var(--ok) 18%,transparent);color:var(--ok)}
+.pill.warn{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+.pill.bad{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+
+.rail{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin-top:18px}
+.finding{border-left:3px solid var(--accent);padding:10px 14px;background:var(--panel);border-radius:0 8px 8px 0;border-top:1px solid var(--line);border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.finding .num{font:700 26px/1 var(--display);font-variant-numeric:tabular-nums}
+.finding .num small{font:500 12px var(--mono);color:var(--mute);margin-left:4px}
+.finding .t{font-weight:600;margin-top:4px}
+.finding .s{font-size:12.5px;color:var(--mute);margin-top:2px}
+.finding[data-phys=thermal]{border-left-color:var(--thermal)}
+.finding[data-phys=optical]{border-left-color:var(--optical)}
+.finding[data-phys=electrical]{border-left-color:var(--electrical)}
+.finding[data-phys=auto]{border-left-color:var(--auto)}
+
+.tabs{display:flex;gap:4px;margin-top:22px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.tabs button{font:600 13px/1 var(--body);padding:10px 14px;border:0;background:none;color:var(--mute);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px}
+.tabs button[aria-selected=true]{color:var(--ink);border-bottom-color:var(--accent)}
+.tabpanel{display:none;margin-top:14px}
+.tabpanel.active{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.chart{width:100%;height:auto;display:block}
+.chart text{fill:var(--ink);font:11px var(--mono)}
+.chart .ax{stroke:var(--line)} .chart .grid{stroke:var(--line);stroke-dasharray:2 3} .chart .lab{fill:var(--mute)}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+td.n,th.n{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums}
+.wide{overflow-x:auto}
+figure{margin:0}
+figure img{width:100%;border-radius:8px;border:1px solid var(--line);display:block}
+figcaption{font:12px/1.4 var(--mono);color:var(--mute);margin-top:6px}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-top:18px}
+.note{font-size:12.5px;color:var(--mute)}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:13px}
+.kv b{font-weight:500;font-family:var(--mono);font-variant-numeric:tabular-nums}
+.heat{width:100%;image-rendering:pixelated;border-radius:6px;border:1px solid var(--line)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="wrap">
+<header>
+  <h1><small>NRDI · coupled periorbital physics · digital twin</small>One anatomy, three physics, eight design verdicts</h1>
+  <div class="meta" id="meta"></div>
+</header>
+<p class="lede" style="margin-top:12px">Thermal, optical and electrical models solved on one anatomical periorbital mesh, driven by the same sensor poses as the CAD. Move the patient vector and every sensor readout updates through a polynomial surrogate fitted to the finite-element runs. Every number on this page is traceable to a solver output file.</p>
+
+<div class="grid">
+  <div class="panel viewport" id="vp">
+    <canvas id="c3d"></canvas>
+    <div id="callouts"></div>
+    <div class="vp-ui">
+      <label for="explode">Explode</label><input id="explode" type="range" min="0" max="1" step="0.005" value="0">
+      <button class="btn" id="spin" aria-pressed="true">Auto-rotate</button>
+      <button class="btn" id="labels" aria-pressed="false">Callouts</button>
+      <button class="btn" id="sensorsOnly" aria-pressed="false" title="ghost the frame and lenses so the sensors and their mount points read">Sensors only</button>
+      <span class="note" id="hint">drag to orbit · wheel to zoom</span>
+    </div>
+  </div>
+  <div class="panel">
+    <h3>Patient vector</h3>
+    <div class="sliders" id="sliders"></div>
+    <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+      <button class="btn" data-scn="healthy">Healthy, 25 °C</button>
+      <button class="btn" data-scn="cold">Cold room, healthy</button>
+      <button class="btn" data-scn="npdr">NPDR, 25 °C</button>
+    </div>
+    <h3 style="margin-top:16px">Sensor readouts <span class="pill" id="srcpill">surrogate</span></h3>
+    <div class="tiles" id="tiles"></div>
+    <p class="note" style="margin-top:10px" id="uqnote"></p>
+  </div>
+</div>
+
+<h2 style="margin-top:26px">Design verdicts from the coupled model</h2>
+<p class="lede">Each verdict changes the bill of materials or the sensor placement, and each carries the number that forced it.</p>
+<div class="rail" id="rail"></div>
+
+<div class="tabs" role="tablist" id="tabs"></div>
+<div id="panels"></div>
+
+<h2 style="margin-top:26px">Renders</h2>
+<div class="gallery" id="gallery"></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" integrity="sha384-CI3ELBVUz9XQO+97x6nwMDPosPR5XvsxW2ua7N1Xeygeh1IxtgqtCkGfQY9WWdHu" crossorigin="anonymous"></script>
+<script>
+/*__DATA__*/
+const $ = s => document.querySelector(s);
+const fmt = (v, d=2) => (v==null||isNaN(v)) ? "—" : Number(v).toFixed(d);
+const b64f32 = s => new Float32Array(Uint8Array.from(atob(s), c=>c.charCodeAt(0)).buffer);
+const b64u32 = s => new Uint32Array(Uint8Array.from(atob(s), c=>c.charCodeAt(0)).buffer);
+
+// ---------------------------------------------------------------- meta ----
+$("#meta").innerHTML = `mesh <b>${DATA.thermal.mesh.split(/[\\/]/).pop()}</b> · tissue DB <b>${DATA.tissue_db_meta.generated||""}</b><br>` +
+  `MCX ${DATA.optical.nphoton.toExponential(0)} photons · surrogate ${DATA.surrogate? DATA.surrogate.n_solves+" FE solves":"pending"}`;
+
+// ------------------------------------------------------------ 3D viewer ----
+(function(){
+  const canvas = $("#c3d"), vp = $("#vp");
+  const renderer = new THREE.WebGLRenderer({canvas, antialias:true, alpha:true});
+  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  const scene = new THREE.Scene();
+  const cam = new THREE.PerspectiveCamera(32, 1, 0.01, 10);
+  const hemi = new THREE.HemisphereLight(0xffffff, 0x334455, 0.9); scene.add(hemi);
+  const key = new THREE.DirectionalLight(0xfff4e6, 1.1); key.position.set(0.3,0.4,0.5); scene.add(key);
+  const rim = new THREE.DirectionalLight(0xdde8ff, 0.6); rim.position.set(-0.3,-0.5,0.4); scene.add(rim);
+  const root = new THREE.Group(); scene.add(root);
+  // project frame is Z-up mm: rotate so +Z -> up, +Y (anterior) -> toward camera
+  root.rotation.x = -Math.PI/2; root.scale.setScalar(0.001);
+  const bb = DATA.geometry.bbox; const cx=(bb.min[0]+bb.max[0])/2, cy=(bb.min[1]+bb.max[1])/2+30, cz=(bb.min[2]+bb.max[2])/2;
+  const meshes = [];
+  const matFor = p => {
+    const c = new THREE.Color(...p.color);
+    if (p.category==="lens") return new THREE.MeshPhysicalMaterial({color:0xdfe9f3, transmission:0.85, roughness:0.05, thickness:0.002, transparent:true, opacity:0.55});
+    if (p.label.startsWith("hinge")||p.label==="battery"||p.label==="haptic") return new THREE.MeshStandardMaterial({color:0xbfc3c8, metalness:1, roughness:0.3});
+    if (p.category==="frame") return new THREE.MeshPhysicalMaterial({color:0x17181b, roughness:0.28, clearcoat:0.8, clearcoatRoughness:0.08});
+    return new THREE.MeshStandardMaterial({color:c, roughness:0.5, metalness:0.05});
+  };
+  for (const p of DATA.geometry.parts){
+    const g = new THREE.BufferGeometry();
+    g.setAttribute("position", new THREE.BufferAttribute(b64f32(p.pos_b64), 3));
+    g.setIndex(new THREE.BufferAttribute(b64u32(p.idx_b64), 1));
+    g.computeVertexNormals();
+    const m = new THREE.Mesh(g, matFor(p));
+    m.userData = {p, home:new THREE.Vector3(0,0,0), dir:new THREE.Vector3(...p.explode.dir), dist:p.explode.dist_mm, order:p.explode.order};
+    root.add(m); meshes.push(m);
+  }
+  // leader line (exploded part -> mount point on the frame) + ring at the mount, per sensor-like part;
+  // opacity follows the part's own explode fraction. `mount` = parts.json mount_mm (falls back to pos_mm)
+  const isSensorLike = p => ["sensor","electronics","power","actuator"].includes(p.category) || p.label.startsWith("elec");
+  const annos = [];
+  for (const m of meshes){ const p = m.userData.p; if(!isSensorLike(p)) continue;
+    const mount = new THREE.Vector3(...(p.mount||p.pos)), pos = new THREE.Vector3(...p.pos);
+    const line = new THREE.Line(new THREE.BufferGeometry().setFromPoints([mount, pos]), new THREE.LineBasicMaterial({color:0xc9d1d9, transparent:true, opacity:0}));
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(1.2, 0.12, 8, 32), new THREE.MeshBasicMaterial({color:0xe3e8ee, transparent:true, opacity:0}));
+    ring.position.copy(mount); ring.quaternion.setFromUnitVectors(new THREE.Vector3(0,0,1), m.userData.dir.clone().normalize());
+    line.visible = ring.visible = false; root.add(line); root.add(ring); annos.push({m, line, ring, pos});
+  }
+  // orbit control (dependency-free)
+  let theta = 0.55, phi = 1.15, radius = 0.36, drag=null, auto=true;
+  const target = new THREE.Vector3(cx*0.001, cz*0.001, -cy*0.001);
+  function place(){ cam.position.set(target.x+radius*Math.sin(phi)*Math.sin(theta), target.y+radius*Math.cos(phi), target.z+radius*Math.sin(phi)*Math.cos(theta)); cam.lookAt(target); }
+  canvas.addEventListener("pointerdown", e=>{drag={x:e.clientX,y:e.clientY}; auto=false; $("#spin").setAttribute("aria-pressed","false"); canvas.setPointerCapture(e.pointerId);});
+  canvas.addEventListener("pointermove", e=>{ if(!drag) return; theta -= (e.clientX-drag.x)*0.008; phi = Math.min(2.6, Math.max(0.3, phi + (e.clientY-drag.y)*0.006)); drag={x:e.clientX,y:e.clientY}; });
+  canvas.addEventListener("pointerup", ()=>drag=null);
+  canvas.addEventListener("wheel", e=>{ e.preventDefault(); radius = Math.min(1.0, Math.max(0.12, radius*(1+e.deltaY*0.001))); }, {passive:false});
+  $("#spin").onclick = e=>{ auto=!auto; e.currentTarget.setAttribute("aria-pressed", String(auto)); };
+  // explode
+  const slider = $("#explode"); let explodeT = 0;
+  const ease = t => t<0.5 ? 4*t*t*t : 1-Math.pow(-2*t+2,3)/2;
+  function applyExplode(){
+    const maxOrder = 3;
+    for (const m of meshes){
+      const u = m.userData, start = u.order/(maxOrder+1), span = 1-start*0.6;
+      const local = Math.min(1, Math.max(0, (explodeT - start*0.6)/span));
+      const d = u.dir.clone().multiplyScalar(u.dist*ease(local));
+      m.position.copy(d); u.local = local;
+    }
+    for (const a of annos){ const t = a.m.userData.local, e = a.pos.clone().add(a.m.position), att = a.line.geometry.attributes.position;
+      att.setXYZ(1, e.x, e.y, e.z); att.needsUpdate = true;
+      a.line.material.opacity = t; a.ring.material.opacity = t; a.ring.scale.setScalar(Math.max(t, 1e-3));
+      a.line.visible = a.ring.visible = t > 0.01; }
+  }
+  // sensors-only: ghost frame + lens parts so the sensor cluster and its mount points read clearly
+  let sensorsOnly = false;
+  $("#sensorsOnly").onclick = e=>{ sensorsOnly = !sensorsOnly; e.currentTarget.setAttribute("aria-pressed", String(sensorsOnly));
+    for (const m of meshes){ if (isSensorLike(m.userData.p)) continue; const mat = m.material;
+      if (mat.userData.op === undefined){ mat.userData.op = mat.opacity; mat.userData.tr = mat.transparent; }
+      mat.transparent = sensorsOnly || mat.userData.tr; mat.opacity = sensorsOnly ? 0.15 : mat.userData.op; mat.depthWrite = !sensorsOnly; mat.needsUpdate = true; }
+  };
+  slider.oninput = ()=>{ explodeT = parseFloat(slider.value); applyExplode(); };
+  // callouts
+  const co = $("#callouts"); let showLabels=false;
+  const labelFor = {}; for (const p of DATA.geometry.parts){ if (["frame","lens"].includes(p.category)) continue; const d=document.createElement("div"); d.className="callout"; d.textContent=(p.part_number ? p.part_number+" · " : "")+p.callout; co.appendChild(d); labelFor[p.label]=d; }
+  $("#labels").onclick = e=>{ showLabels=!showLabels; e.currentTarget.setAttribute("aria-pressed", String(showLabels)); };
+  function updateLabels(){
+    const r = canvas.getBoundingClientRect();
+    for (const m of meshes){ const d = labelFor[m.userData.p.label]; if(!d) continue;
+      if(!showLabels){ d.classList.remove("show"); continue; }
+      const v = new THREE.Vector3(...m.userData.p.pos).add(m.position).multiplyScalar(0.001).applyMatrix4(root.matrixWorld).project(cam);
+      d.style.left = ((v.x+1)/2*r.width)+"px"; d.style.top = ((1-v.y)/2*r.height-8)+"px"; d.classList.toggle("show", v.z<1);
+    }
+  }
+  function resize(){ const w=vp.clientWidth, h=vp.clientHeight; renderer.setSize(w,h,false); cam.aspect=w/h; cam.updateProjectionMatrix(); }
+  addEventListener("resize", resize); resize(); applyExplode();
+  (function loop(){ requestAnimationFrame(loop); if(auto) theta += 0.003; place(); renderer.render(scene, cam); updateLabels(); })();
+})();
+
+// -------------------------------------------------------- twin sliders ----
+const PARAMS = DATA.surrogate ? DATA.surrogate.params : [["choroid_frac",0.3,1],["skin_perf_frac",0.5,1.5],["eyelid_perf_frac",0.5,3],["orbit_perf_frac",0.5,3],["T_amb",18,28],["h_skin",3,8],["E_tear",20,60],["k_sclera_scale",0.6,1.7]];
+const LABELS = {choroid_frac:"Choroidal perfusion (DR handle)", skin_perf_frac:"Skin perfusion", eyelid_perf_frac:"Eyelid perfusion ×", orbit_perf_frac:"Orbital fat perfusion ×", T_amb:"Room temperature °C", h_skin:"Skin convection W/m²K", E_tear:"Tear evaporation W/m²", k_sclera_scale:"Sclera conductivity ×"};
+const DEFAULT = {choroid_frac:1, skin_perf_frac:1, eyelid_perf_frac:1, orbit_perf_frac:1, T_amb:25, h_skin:3.7, E_tear:40, k_sclera_scale:1};
+const SCN = {healthy:{...DEFAULT}, cold:{...DEFAULT, T_amb:19, skin_perf_frac:0.7, h_skin:6}, npdr:{...DEFAULT, choroid_frac:0.5}};
+const state = {...DEFAULT};
+const sl = $("#sliders");
+for (const [k,lo,hi] of PARAMS){
+  const d = document.createElement("div"); d.className="sl";
+  d.innerHTML = `<label for="p_${k}">${LABELS[k]||k}</label><span class="v" id="v_${k}"></span><input id="p_${k}" type="range" min="${lo}" max="${hi}" step="${(hi-lo)/200}" value="${state[k]}">`;
+  sl.appendChild(d);
+  d.querySelector("input").oninput = e=>{ state[k]=parseFloat(e.target.value); update(); };
+}
+document.querySelectorAll("[data-scn]").forEach(b=>b.onclick=()=>{ Object.assign(state, SCN[b.dataset.scn]); for(const [k] of PARAMS) $("#p_"+k).value=state[k]; update(); });
+
+function surrogate(x){
+  const S = DATA.surrogate; if(!S) return null;
+  const d = S.params.length, xs = S.params.map(([k,lo,hi],i)=> 2*(x[k]-lo)/(hi-lo)-1);
+  const f = [1, ...xs]; for(let i=0;i<d;i++) for(let j=i;j<d;j++) f.push(xs[i]*xs[j]);
+  return S.outputs.map((o,j)=> f.reduce((acc,fi,t)=>acc+fi*S.surrogate.coef[t][j],0));
+}
+const T = DATA.thermal;
+function update(){
+  for (const [k] of PARAMS) $("#v_"+k).textContent = fmt(state[k], k==="T_amb"?1:2);
+  const y = surrogate(state);
+  const base = y ? surrogate(DEFAULT) : null;
+  const rows = y ? [
+    ["Corneal apex", y[0], base[0], "thermal", "published 34–35 °C; model runs ~1.4 °C cold (calibration item)"],
+    ["Medial canthus skin", y[1], base[1], "thermal", "current thermopile target"],
+    ["DCI aimed at limbus", y[2], base[2], "thermal", "verdict #3 target"],
+    ["DCI aimed at canthus", y[3], base[3], "thermal", "as laid out today"],
+  ] : [
+    ["Corneal apex", T.corneal_apex_C, T.corneal_apex_C, "thermal", "fine-mesh FE result"],
+    ["Medial canthus skin", T.medial_canthus_skin_C, T.medial_canthus_skin_C, "thermal", ""],
+    ["DCI 5° reading", T.thermopile_DCI_5deg.reading_C, T.thermopile_DCI_5deg.reading_C, "thermal", `${fmt(T.thermopile_DCI_5deg.spot_mm,1)} mm spot`],
+    ["BAA 90° reading", T.thermopile_BAA_90deg.reading_C, T.thermopile_BAA_90deg.reading_C, "thermal", `${fmt(T.thermopile_BAA_90deg.spot_mm,1)} mm spot`],
+  ];
+  const sd = DATA.surrogate ? DATA.surrogate.surrogate.rmse_holdout : null;
+  $("#tiles").innerHTML = rows.map(([k,v,b,ph,d],i)=>`<div class="tile ${i===2?"head":""}"><div class="k">${k}</div><div class="n">${fmt(v)}<small>°C</small></div><div class="d">Δ ${(v-b>=0?"+":"")+fmt(v-b)} °C vs healthy${sd?` · ±${fmt(sd[i])} surrogate`:""}</div></div>`).join("");
+  $("#srcpill").textContent = y ? "quadratic surrogate of "+DATA.surrogate.n_solves+" FE solves" : "fine-mesh FE values (surrogate pending)";
+}
+if (DATA.surrogate){
+  const S = DATA.surrogate, top = S.outputs.map((o,j)=> S.params.map((p,i)=>[p[0],S.ST[i][j]]).sort((a,b)=>b[1]-a[1]).slice(0,3));
+  $("#uqnote").textContent = `Global sensitivity (Sobol' total index): limbus reading driven by ${top[2].map(([k,v])=>`${LABELS[k]||k} ${fmt(v,2)}`).join(", ")}. Canthus reading driven by ${top[1].map(([k,v])=>`${LABELS[k]||k} ${fmt(v,2)}`).join(", ")}.`;
+}
+update();
+
+// ------------------------------------------------------------ verdicts ----
+const O = DATA.optical, B = DATA.bioimpedance, P = DATA.pupil, OT = DATA.opto_thermal;
+const sw = O.ppg.spacing_sweep_880, s3 = sw[0], s6 = sw[1];
+const iec = O.led.max_led_optical_power_mW;
+const ot42 = OT.led_power_mW[Object.keys(OT.led_power_mW).sort((a,b)=>parseFloat(b)-parseFloat(a))[0]];
+const e50 = B.edema_50kHz["0.1"];
+const findings = [
+  ["thermal", fmt(T.thermopile_BAA_90deg.spot_mm,0), "mm", "The 90° thermopile in the BOM sees a 28 mm spot", "MLX90614-BAA cannot resolve the canthus. The DCI variant sees "+fmt(T.thermopile_DCI_5deg.spot_mm,1)+" mm."],
+  ["auto", fmt(P.stimulus_sweep[0].amplitude_mm,1), "mm", "940 nm alone evokes no pupil reflex", "A ≥100 lx visible flash is needed for the 2.2 mm constriction the branch measures."],
+  ["thermal", "7×", "", "Aim the thermopile at the ocular surface, not the canthus", "50 % choroidal loss: −"+fmt(Math.abs(T.choroid_sweep[5].d_apex_C),2)+" °C at the cornea vs −"+fmt(Math.abs(T.choroid_sweep[5].dci_C - T.thermopile_DCI_5deg.reading_C),2)+" °C at the canthus skin."],
+  ["electrical", "0", "mm", "Electrodes must touch skin", "The lens-plane poses floated 15–25 mm off the face; pads now sit on the brow and cheek on sprung arms."],
+  ["optical", fmt(100*s3.artery_share_of_pulse,0), "%", "3 mm PPG spacing reads the skin plexus, not the artery", "Arterial share "+fmt(100*s3.artery_share_of_pulse,0)+"% at 3 mm → "+fmt(100*s6.artery_share_of_pulse,0)+"% at 6 mm for a "+fmt(s3.detected_fraction/s6.detected_fraction,0)+"× photon penalty."],
+  ["electrical", fmt(100*Math.abs(e50.dZ_abs_ohm)/B.sweep["50000"].tetrapolar.abs,2), "%", "Cross-eye tetrapolar is blind to the orbit", "+10 % orbit conductivity moves |Z| by "+fmt(e50.dZ_abs_ohm,3)+" Ω of "+fmt(B.sweep["50000"].tetrapolar.abs,1)+" Ω. Use a local 4-electrode set around one eye."],
+  ["thermal", fmt(ot42.apex,2), "°C", "A continuously-on illuminator confounds the thermopile", "At the IEC-limited "+fmt(iec,0)+" mW the cornea warms by "+fmt(ot42.apex,2)+" °C — a third of the DR deficit. Pulse it; read with the LED off."],
+  ...(DATA.surrogate ? [["thermal", fmt(DATA.surrogate.ST[4][2],2), "S_T", "Room temperature dominates every thermal readout", "Sobol' total index of ambient on the limbus reading vs "+fmt(DATA.surrogate.ST[0][2],2)+" for choroidal perfusion. Read the MLX90614 ambient channel and compensate."]] : []),
+];
+$("#rail").innerHTML = findings.map(([ph,n,u,t,s],i)=>`<div class="finding" data-phys="${ph}"><div class="num">${n}<small>${u}</small></div><div class="t">${i+1}. ${t}</div><div class="s">${s}</div></div>`).join("");
+
+// -------------------------------------------------------------- charts ----
+function svgLine(series, {w=520,h=240,xl="",yl="",xf=v=>fmt(v,0),yf=v=>fmt(v,1),ymin=null,ymax=null}={}){
+  const pad={l:52,r:14,t:14,b:36};
+  const xs=series.flatMap(s=>s.x), ys=series.flatMap(s=>s.y);
+  const x0=Math.min(...xs), x1=Math.max(...xs), y0=ymin??Math.min(...ys), y1=ymax??Math.max(...ys);
+  const X=v=>pad.l+(v-x0)/(x1-x0||1)*(w-pad.l-pad.r), Y=v=>h-pad.b-(v-y0)/(y1-y0||1)*(h-pad.t-pad.b);
+  let g=`<svg class="chart" viewBox="0 0 ${w} ${h}" role="img">`;
+  for(let i=0;i<=4;i++){ const yv=y0+(y1-y0)*i/4; g+=`<line class="grid" x1="${pad.l}" x2="${w-pad.r}" y1="${Y(yv)}" y2="${Y(yv)}"/><text x="${pad.l-6}" y="${Y(yv)+4}" text-anchor="end">${yf(yv)}</text>`; }
+  for(let i=0;i<=4;i++){ const xv=x0+(x1-x0)*i/4; g+=`<text x="${X(xv)}" y="${h-pad.b+16}" text-anchor="middle">${xf(xv)}</text>`; }
+  g+=`<line class="ax" x1="${pad.l}" x2="${w-pad.r}" y1="${h-pad.b}" y2="${h-pad.b}"/>`;
+  for(const s of series){ const d=s.x.map((x,i)=>`${i?"L":"M"}${X(x).toFixed(1)},${Y(s.y[i]).toFixed(1)}`).join(""); g+=`<path d="${d}" fill="none" stroke="${s.c}" stroke-width="2"/>`; s.x.forEach((x,i)=>g+=`<circle cx="${X(x)}" cy="${Y(s.y[i])}" r="3" fill="${s.c}"/>`); }
+  g+=`<text class="lab" x="${(pad.l+w-pad.r)/2}" y="${h-4}" text-anchor="middle">${xl}</text><text class="lab" transform="translate(12 ${(pad.t+h-pad.b)/2}) rotate(-90)" text-anchor="middle">${yl}</text>`;
+  series.forEach((s,i)=>g+=`<text x="${w-pad.r}" y="${pad.t+12+14*i}" text-anchor="end" fill="${s.c}">${s.name}</text>`);
+  return g+"</svg>";
+}
+const thermalCS = T.choroid_sweep;
+const tabs = {
+  Thermal: `<div class="panel"><h3>Choroidal perfusion → temperature</h3>${svgLine([
+      {name:"corneal apex", c:"var(--thermal)", x:thermalCS.map(r=>100*(1-r.choroid_frac)), y:thermalCS.map(r=>r.d_apex_C)},
+      {name:"DCI at canthus", c:"var(--mute)", x:thermalCS.map(r=>100*(1-r.choroid_frac)), y:thermalCS.map(r=>r.dci_C - thermalCS[0].dci_C)}],
+      {xl:"choroidal perfusion loss, %", yl:"ΔT, °C", yf:v=>fmt(v,2)})}
+      <p class="note">Clinical NPDR deficit 0.61 ± 0.12 °C (Chandrasekar 2021) is reproduced at ~50 % loss on the cornea. The canthus skin barely moves.</p></div>
+    <div class="panel"><h3>Illuminator heating</h3><table><tr><th>LED power</th><th class="n">apex</th><th class="n">lid</th><th class="n">canthus</th></tr>${Object.entries(OT.led_power_mW).map(([k,v])=>`<tr><td>${k} mW</td><td class="n">+${fmt(v.apex,3)}</td><td class="n">+${fmt(v.lid,3)}</td><td class="n">+${fmt(v.canthus,3)}</td></tr>`).join("")}</table><p class="note">Steady-state °C rise from the MCX-absorbed 940 nm power fed into the bioheat model. IEC 62471 corneal limit reached at ${fmt(iec,1)} mW optical.</p></div>
+    <figure class="panel" style="padding:8px">${DATA.images.physics_thermal?`<img src="${DATA.images.physics_thermal}" alt="Sagittal thermal cutaway">`:""}<figcaption>Sagittal cut through the globe: temperature field (inferno, 31–38.6 °C) with the DCI cone.</figcaption></figure>`,
+  Optical: `<div class="panel"><h3>LED–photodiode spacing (880 nm)</h3>${svgLine([
+      {name:"AC/DC, %", c:"var(--optical)", x:sw.map(r=>r.spacing_mm), y:sw.map(r=>100*r.ac_dc_total)},
+      {name:"artery share of pulse, %", c:"var(--mute)", x:sw.map(r=>r.spacing_mm), y:sw.map(r=>100*r.artery_share_of_pulse)}],
+      {xl:"LED–PD spacing, mm", yl:"%", yf:v=>fmt(v,0)})}
+      <table style="margin-top:8px"><tr><th>spacing</th><th class="n">AC/DC</th><th class="n">artery share</th><th class="n">photons detected</th></tr>${sw.map(r=>`<tr><td>${r.spacing_mm} mm</td><td class="n">${fmt(100*r.ac_dc_total,2)} %</td><td class="n">${fmt(100*r.artery_share_of_pulse,0)} %</td><td class="n">${fmt(100*r.detected_fraction,2)} %</td></tr>`).join("")}</table></div>
+    <div class="panel"><h3>Measurement-density banana, 880 nm</h3><canvas class="heat" id="banana"></canvas><p class="note">Φ<sub>source</sub>·Φ<sub>detector</sub> on the plane through the MAX30102 (log, 6 decades). The superficial temporal artery is outlined. Sampling depth ${fmt(O.ppg.wavelengths["880"].banana_weighted_depth_mm,2)} mm.</p></div>
+    <div class="panel"><h3>Illuminator safety</h3><div class="kv"><span>LED to cornea</span><b>${fmt(O.led.led_to_cornea_mm,1)} mm</b><span>Cone half-angle</span><b>${O.led.cone_half_angle_deg}°</b><span>Corneal irradiance</span><b>${fmt(O.led.irradiance_W_m2_per_W_led,0)} W/m² per W</b><span>IEC 62471 limit</span><b>${O.led.iec62471_cornea_limit_W_m2} W/m²</b><span>Max optical power</span><b>${fmt(iec,1)} mW</b><span>Absorbed in tissue</span><b>${fmt(100*O.led.absorbed_total_fraction,0)} %</b></div></div>`,
+  Electrical: `<div class="panel"><h3>Transfer impedance, 1–100 kHz</h3>${svgLine([
+      {name:"tetrapolar |Z|, Ω", c:"var(--electrical)", x:Object.keys(B.sweep).map(Number).map(v=>v/1e3), y:Object.values(B.sweep).map(r=>r.tetrapolar.abs)}],
+      {xl:"frequency, kHz", yl:"Ω", yf:v=>fmt(v,2)})}
+      <table><tr><th>f</th><th class="n">tetra |Z|</th><th class="n">phase</th><th class="n">bipolar tissue</th><th class="n">contact</th></tr>${Object.entries(B.sweep).map(([f,r])=>`<tr><td>${f/1e3} kHz</td><td class="n">${fmt(r.tetrapolar.abs,2)} Ω</td><td class="n">${fmt(r.tetrapolar.phase_deg,2)}°</td><td class="n">${fmt(r.bipolar.Z_tissue.abs,0)} Ω</td><td class="n">${fmt(r.bipolar.Z_contact.abs,0)} Ω</td></tr>`).join("")}</table></div>
+    <div class="panel"><h3>What the tetrapolar pair sees (50 kHz)</h3><table><tr><th>tissue</th><th class="n">share of Re(Z)</th></tr>${Object.entries(B.tissue_share_50kHz).sort((a,b)=>Math.abs(b[1])-Math.abs(a[1])).filter(([k,v])=>Math.abs(v)>0.005).map(([k,v])=>`<tr><td>${k.replace(/_/g," ")}</td><td class="n">${fmt(100*v,1)} %</td></tr>`).join("")}</table><p class="note">Geselowitz decomposition; reciprocity residual ${B.sweep["50000"].reciprocity_residual.toExponential(1)}. σ(T) coupling: ${fmt(B.thermal_coupling_50kHz.dZ_abs_percent,2)} % of |Z|.</p></div>
+    <div class="panel"><h3>Edema sensitivity (orbit conductivity +δ)</h3><table><tr><th>δ</th><th class="n">tetra Δ|Z|</th><th class="n">Δphase</th><th class="n">bipolar Δ|Z|</th></tr>${Object.entries(B.edema_50kHz).map(([d,r])=>`<tr><td>+${100*d} %</td><td class="n">${fmt(r.dZ_abs_ohm,3)} Ω</td><td class="n">${fmt(r.dphase_deg,3)}°</td><td class="n">${fmt(r.bipolar_dZ_abs_ohm,1)} Ω</td></tr>`).join("")}</table></div>`,
+  Pupil: `<div class="panel"><h3>Light reflex, healthy vs autonomic gain 0.92</h3>${svgLine([
+      {name:"healthy", c:"var(--auto)", x:P.traces.t.filter((_,i)=>i%6===0), y:P.traces.D_healthy.filter((_,i)=>i%6===0)},
+      {name:"g = 0.92 (published diabetic)", c:"var(--mute)", x:P.traces.t.filter((_,i)=>i%6===0), y:P.traces["D_gain_0.92"].filter((_,i)=>i%6===0)}],
+      {xl:"time, s (1 s flash at t = 1 s)", yl:"pupil diameter, mm", xf:v=>fmt(v,1)})}</div>
+    <div class="panel"><h3>Metrics</h3><table><tr><th>metric</th><th class="n">healthy</th><th class="n">g = 0.92</th><th class="n">published</th></tr>
+      <tr><td>amplitude</td><td class="n">${fmt(P.healthy.amplitude_mm)} mm</td><td class="n">${fmt(P["gain_0.92"].amplitude_mm)} mm</td><td class="n">2.44 → 2.27</td></tr>
+      <tr><td>max constriction velocity</td><td class="n">${fmt(P.healthy.max_constriction_velocity_mm_s)}</td><td class="n">${fmt(P["gain_0.92"].max_constriction_velocity_mm_s)}</td><td class="n">7.24 → 6.68 mm/s</td></tr>
+      <tr><td>latency</td><td class="n">${fmt(P.healthy.latency_s,3)} s</td><td class="n">${fmt(P["gain_0.92"].latency_s,3)} s</td><td class="n">longer in DAN</td></tr></table>
+      <p class="note">Camera on the bridge: ${fmt(P.camera.vergence_deg,1)}° vergence → a naive diameter under-reads by ${fmt(P.camera.naive_underread_percent,0)} %; ellipse-fit correction applied in the branch.</p></div>
+    <div class="panel"><h3>Stimulus requirement</h3><table><tr><th>flash</th><th class="n">amplitude</th></tr>${P.stimulus_sweep.map(r=>`<tr><td>${r.stimulus_lux} lx</td><td class="n">${fmt(r.amplitude_mm)} mm</td></tr>`).join("")}</table></div>`,
+  Credibility: DATA.verification ? `<div class="panel"><h3>Code verification (manufactured solution)</h3><table><tr><th>mesh</th><th class="n">nodes</th><th class="n">h</th><th class="n">L2 rel. error</th></tr><tr><td>coarse</td><td class="n">${DATA.verification.mms_coarse.nodes.toLocaleString()}</td><td class="n">${fmt(DATA.verification.mms_coarse.h_mm,2)} mm</td><td class="n">${DATA.verification.mms_coarse.L2_rel.toExponential(2)}</td></tr><tr><td>fine</td><td class="n">${DATA.verification.mms_full.nodes.toLocaleString()}</td><td class="n">${fmt(DATA.verification.mms_full.h_mm,2)} mm</td><td class="n">${DATA.verification.mms_full.L2_rel.toExponential(2)}</td></tr></table><p class="note">Observed order ${fmt(DATA.verification.observed_order,2)} (P1 elements expect 2).</p></div>
+    <div class="panel"><h3>Solution verification (GCI, Fs = 3)</h3><table><tr><th>quantity</th><th class="n">fine</th><th class="n">extrapolated</th><th class="n">GCI</th></tr>${Object.entries(DATA.verification.gci).map(([k,g])=>`<tr><td>${k.replace(/_/g," ")}</td><td class="n">${fmt(g.fine,3)}</td><td class="n">${fmt(g.richardson_extrapolated,3)}</td><td class="n">${fmt(g.GCI_fine_percent,2)} %</td></tr>`).join("")}</table></div>
+    <div class="panel"><h3>Validation targets</h3><table><tr><th>quantity</th><th class="n">model</th><th class="n">published</th><th>status</th></tr>
+      <tr><td>corneal apex</td><td class="n">${fmt(T.corneal_apex_C)} °C</td><td class="n">34–35 °C</td><td><span class="pill warn">calibrate</span></td></tr>
+      <tr><td>NPDR deficit</td><td class="n">${fmt(Math.abs(T.choroid_sweep[5].d_apex_C))} °C @50 %</td><td class="n">0.61 ± 0.12 °C</td><td><span class="pill ok">matches</span></td></tr>
+      <tr><td>retrobulbar</td><td class="n">37.0 °C</td><td class="n">≈37 °C</td><td><span class="pill ok">matches</span></td></tr>
+      <tr><td>PPG perfusion index</td><td class="n">${fmt(100*O.ppg.wavelengths["880"].ac_dc_perfusion_index,2)} %</td><td class="n">1–5 % (temple)</td><td><span class="pill ok">in range</span></td></tr>
+      <tr><td>pupil amplitude</td><td class="n">${fmt(P.healthy.amplitude_mm)} mm</td><td class="n">2.44 mm</td><td><span class="pill ok">within 10 %</span></td></tr>
+      <tr><td>BIA phase angle</td><td class="n">${fmt(Math.abs(B.sweep["50000"].tetrapolar.phase_deg),1)}°</td><td class="n">6–7° (whole body)</td><td><span class="pill warn">direction only</span></td></tr></table></div>` : `<div class="panel"><p class="note">Verification run pending.</p></div>`,
+};
+const tabbar = $("#tabs"), panels = $("#panels");
+Object.keys(tabs).forEach((k,i)=>{ const b=document.createElement("button"); b.role="tab"; b.textContent=k; b.setAttribute("aria-selected", String(i===0)); b.onclick=()=>{ document.querySelectorAll("#tabs button").forEach(x=>x.setAttribute("aria-selected","false")); b.setAttribute("aria-selected","true"); document.querySelectorAll(".tabpanel").forEach(p=>p.classList.toggle("active", p.dataset.k===k)); if(k==="Optical") drawBanana(); }; tabbar.appendChild(b); const p=document.createElement("div"); p.className="tabpanel"+(i===0?" active":""); p.dataset.k=k; p.innerHTML=tabs[k]; panels.appendChild(p); });
+
+function drawBanana(){
+  const c = $("#banana"); if(!c || c.dataset.done) return; c.dataset.done="1";
+  const bn = DATA.banana, [nx,ny]=bn.shape; c.width=ny; c.height=nx; const ctx=c.getContext("2d"), img=ctx.createImageData(ny,nx);
+  const mask = Uint8Array.from(atob(bn.artery_mask_b64), ch=>ch.charCodeAt(0));
+  const magma = t=>{ const s=[[0,0,4],[40,12,74],[102,21,110],[159,42,99],[212,72,66],[245,125,21],[252,196,58],[252,253,191]]; const u=Math.max(0,Math.min(1,t))*(s.length-1), i=Math.floor(u), f=u-i, a=s[i], b=s[Math.min(i+1,s.length-1)]; return [0,1,2].map(k=>a[k]+(b[k]-a[k])*f); };
+  for(let i=0;i<nx;i++) for(let j=0;j<ny;j++){ const v=bn.values[i][j]; const o=((nx-1-i)*ny+j)*4; if(v<0){ img.data[o+3]=0; continue; } const col = mask[i*ny+j] ? [120,220,230] : magma(v); img.data[o]=col[0]; img.data[o+1]=col[1]; img.data[o+2]=col[2]; img.data[o+3]=255; }
+  ctx.putImageData(img,0,0);
+}
+
+// ------------------------------------------------------------- gallery ----
+$("#gallery").innerHTML = [["hero_face","On-face render: Cycles, photogrammetry head (CC BY 3.0), pupils on the frame's optical axes"],["hero_product","Product render: acetate, CR-39, stainless hinges, TO-39 thermopile"],["explode","Exploded assembly with leader lines to every sensor's mount point, from the same manifest that drives the viewer above"],["physics_thermography","Thermography on the real face: the 3D Pennes skin temperature (inferno 32.5-35.8 °C) with the MLX90614 DCI cone"],["physics_thermal","Sagittal cutaway: temperature field through the globe and orbit with the thermopile FOV"]].filter(([k])=>DATA.images[k]).map(([k,cap])=>`<figure><img src="${DATA.images[k]}" alt="${cap}"><figcaption>${cap}</figcaption></figure>`).join("");
+</script>

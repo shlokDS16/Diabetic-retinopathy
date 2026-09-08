@@ -1,0 +1,82 @@
+{
+  "dataset": "APTOS 2019 Blindness Detection (Aravind Eye Hospital, India), ICDR 0-4",
+  "source_on_disk": "mirror",
+  "citation": "Asia Pacific Tele-Ophthalmology Society, APTOS 2019 Blindness Detection, Kaggle 2019",
+  "model": "convnext_tiny.fb_in22k_ft_in1k",
+  "img": 384,
+  "thresholds_from": "DeepDRiD OOF (unchanged)",
+  "n_fold_models": 5,
+  "external_aptos": {
+    "n": 3662,
+    "n_patients": 3662,
+    "qwk": 0.8452031578217636,
+    "qwk_ci": [
+      0.8364433514381887,
+      0.8529165579622777
+    ],
+    "auc_referable": 0.9792367568737488,
+    "auc_referable_ci": [
+      0.9755521354915175,
+      0.98259771679067
+    ],
+    "accuracy": 0.551611141452758,
+    "accuracy_ci": [
+      0.5352266521026762,
+      0.5674494811578372
+    ],
+    "grade_counts": {
+      "0": 1805,
+      "1": 370,
+      "2": 999,
+      "3": 193,
+      "4": 295
+    },
+    "confusion": [
+      [
+        1427,
+        360,
+        17,
+        1,
+        0
+      ],
+      [
+        1,
+        57,
+        257,
+        55,
+        0
+      ],
+      [
+        0,
+        15,
+        343,
+        641,
+        0
+      ],
+      [
+        0,
+        0,
+        8,
+        181,
+        4
+      ],
+      [
+        0,
+        0,
+        28,
+        255,
+        12
+      ]
+    ],
+    "note": "APTOS has no patient ids: bootstrap is image-level"
+  },
+  "external_aptos_refit_thresholds": {
+    "thresholds": [
+      0.6597152752679694,
+      1.339493682152495,
+      2.7414675693983774,
+      3.2654995802860944
+    ],
+    "qwk": 0.8780288021474549
+  }
+}

@@ -1,0 +1,18 @@
+# data and heavy artefacts are never committed
+results/data/
+*.pt
+*.npy
+*.msh
+*.stl
+*.vtu
+*.blend
+*.blend1
+*.step
+*.glb
+*.ply
+*.vdb
+__pycache__/
+.ipynb_checkpoints/
+.venv/
+*.log
+paper_build/

@@ -1,0 +1,173 @@
+{
+  "mesh_file": "C:\\Users\\Shlok\\Downloads\\Patent and research paper on diabetic retinopathy\\sim\\out\\periorbital.msh",
+  "units": "mm",
+  "frame": "sensor_layout (origin between pupils, +Y anterior, +Z up)",
+  "nodes": 122279,
+  "tets": 705228,
+  "boundary_tris": 37048,
+  "regions": {
+    "artery_angular": {
+      "physical_id": 1,
+      "volume_mm3": 43.13705580578183,
+      "n_tets": 466
+    },
+    "artery_temporal": {
+      "physical_id": 2,
+      "volume_mm3": 93.01701148383913,
+      "n_tets": 459
+    },
+    "cornea": {
+      "physical_id": 3,
+      "volume_mm3": 127.6528874009682,
+      "n_tets": 2483
+    },
+    "sclera": {
+      "physical_id": 4,
+      "volume_mm3": 1510.27174975049,
+      "n_tets": 23739
+    },
+    "lens": {
+      "physical_id": 5,
+      "volume_mm3": 174.50840252884154,
+      "n_tets": 2830
+    },
+    "aqueous": {
+      "physical_id": 6,
+      "volume_mm3": 936.4101986683725,
+      "n_tets": 13586
+    },
+    "vitreous": {
+      "physical_id": 7,
+      "volume_mm3": 4490.428316138582,
+      "n_tets": 53545
+    },
+    "eyelid": {
+      "physical_id": 8,
+      "volume_mm3": 5678.933042739589,
+      "n_tets": 35680
+    },
+    "orbital_fat": {
+      "physical_id": 9,
+      "volume_mm3": 12077.062704348182,
+      "n_tets": 92233
+    },
+    "skin": {
+      "physical_id": 10,
+      "volume_mm3": 25683.162535812626,
+      "n_tets": 39942
+    },
+    "fat_subcutaneous": {
+      "physical_id": 11,
+      "volume_mm3": 53314.38279492841,
+      "n_tets": 65148
+    },
+    "muscle": {
+      "physical_id": 12,
+      "volume_mm3": 68408.56237162183,
+      "n_tets": 66998
+    },
+    "bone_cortical": {
+      "physical_id": 13,
+      "volume_mm3": 88484.05527249526,
+      "n_tets": 85950
+    },
+    "brain_grey": {
+      "physical_id": 14,
+      "volume_mm3": 478369.2181505446,
+      "n_tets": 222169
+    }
+  },
+  "surfaces": {
+    "skin_exposed": {
+      "physical_id": 101,
+      "n_faces": 21860
+    },
+    "cornea_exposed": {
+      "physical_id": 102,
+      "n_faces": 857
+    },
+    "conj_exposed": {
+      "physical_id": 103,
+      "n_faces": 2225
+    },
+    "symmetry": {
+      "physical_id": 104,
+      "n_faces": 6649
+    },
+    "cut": {
+      "physical_id": 105,
+      "n_faces": 4643
+    },
+    "artery_angular_wall": {
+      "physical_id": 106,
+      "n_faces": 416
+    },
+    "artery_temporal_wall": {
+      "physical_id": 107,
+      "n_faces": 398
+    }
+  },
+  "head": {
+    "centre": [
+      0.0,
+      -83.0,
+      -15.0
+    ],
+    "semi_axes": [
+      72.0,
+      88.0,
+      105.0
+    ],
+    "layers_mm": {
+      "skin": 1.5,
+      "fat": 3.0,
+      "muscle": 4.5,
+      "bone": 6.0
+    }
+  },
+  "bulges": {
+    "brow": {
+      "centre": [
+        0.0,
+        -18.0,
+        22.0
+      ],
+      "semi_axes": [
+        62.0,
+        30.0,
+        12.0
+      ]
+    },
+    "nose": {
+      "centre": [
+        0.0,
+        0.0,
+        -12.0
+      ],
+      "semi_axes": [
+        11.0,
+        18.0,
+        24.0
+      ]
+    },
+    "layers_mm": {
+      "skin": 1.5,
+      "fat": 6.0
+    }
+  },
+  "checks": {
+    "canthus_surface_y_mm": 1.9623407304885063,
+    "temple_surface_x_mm": 69.45851774476412,
+    "unclassified_tets": 0,
+    "contact_to_skin_mm": {
+      "brow_med": 0.27795304940038157,
+      "brow_lat": 0.260906519989315,
+      "nose_sup": 0.4759089018918582,
+      "nose_inf": 0.2912191561362498
+    }
+  },
+  "timing_s": {
+    "geometry": 1.0936262607574463,
+    "meshing": 5.912572860717773
+  }
+}

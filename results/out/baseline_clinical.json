@@ -1,0 +1,34 @@
+{
+  "cohort": {
+    "all_graded": 6797,
+    "diabetic": 1119,
+    "gradable": 884
+  },
+  "n_analysis": 884,
+  "n_positive": 382,
+  "prevalence": 0.4321266968325792,
+  "features": [
+    "age",
+    "female",
+    "duration",
+    "insulin",
+    "hba1c"
+  ],
+  "auc": 0.7545498633737302,
+  "auc_ci95": [
+    0.7212026834899056,
+    0.7862491595620918
+  ],
+  "auc_fold_mean": 0.7550971378152853,
+  "auc_fold_sd": 0.033455889328878205,
+  "brier": 0.20146020777870424,
+  "coefficients": {
+    "age": 0.09431122640643863,
+    "female": -0.2106931164144433,
+    "duration": 0.528377879692617,
+    "insulin": 0.3770393151043141,
+    "hba1c": 0.484361664183102
+  },
+  "seed": 20260828,
+  "note": "unweighted logistic regression; NHANES survey weights not applied because the target is individual discrimination, not population prevalence"
+}

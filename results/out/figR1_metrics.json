@@ -1,0 +1,30 @@
+{
+  "model": "clinical_lr",
+  "auc": 0.7545498633737302,
+  "auc_ci95": [
+    0.7212026834899056,
+    0.7862491595620918
+  ],
+  "calibration_intercept": -0.003051752713409606,
+  "calibration_intercept_ci95": [
+    -0.1501273320617783,
+    0.1440238266349591
+  ],
+  "calibration_slope": 0.9469898886078956,
+  "calibration_slope_ci95": [
+    0.780826291288415,
+    1.1131534859273762
+  ],
+  "brier": 0.20146020777870424,
+  "dca_thresholds": [
+    0.05,
+    0.8
+  ],
+  "bootstrap": {
+    "roc_iters": 2000,
+    "cal_iters": 500,
+    "nb_iters": 500,
+    "resampling": "subject-level",
+    "seed": 20260828
+  }
+}
