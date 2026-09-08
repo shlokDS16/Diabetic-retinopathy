@@ -13,7 +13,7 @@ Diabetic retinopathy (DR) and diabetic neuropathy (DN) are screened separately, 
 1. **Physics.** A digital twin of the periorbital region couples a Pennes bioheat model, GPU Monte Carlo photon transport, a complex-conductivity bioimpedance model and a Longtin-Milton pupil model on one 14-tissue finite-element anatomy (122,279 nodes, 705,228 tetrahedra). It is verified with manufactured solutions and grid convergence, its uncertainty is quantified with Sobol' indices over 640 solves, and it returns eight design verdicts to the hardware.
 2. **AI branches.** A ConvNeXt-Tiny ordinal fundus grader trained on DeepDRiD (China) and tested unchanged on IDRiD and APTOS 2019 (India); a macular edema head; logistic and gradient-boosted models of retinopathy and neuropathy on 77,724 routine health records (Türkiye); heart-rate-variability and PPG models on open PhysioNet and PPG-BP cohorts.
 
-## 2. Headline results (all recomputed live in `results/notebooks/NRDI_results.ipynb`)
+## 2. Headline results (all recomputed live in `results/notebooks/NRDI_analysis.ipynb`, PART 1)
 
 | Branch | Result | 95 % CI |
 |---|---|---|
@@ -59,7 +59,12 @@ results/
   out/                       aggregate outputs: *.json metrics, *.npz per-subject predictions (no images, no patient rows)
   figures/paper_npjdm/       final figure set Fig1..Fig8 and SupplementaryFig1..7 (PDF + 600 dpi PNG) with MAP.md
   figures/                   all figure PNG/PDF pairs and CAPTIONS.md
-  notebooks/NRDI_results.ipynb   executed walk-through of every result
+  notebooks/NRDI_analysis.ipynb  executed analysis notebook, PART 1 to PART 10 (integrity, cohorts, grader, transfer,
+                                 error mechanism, DME head, EHR models with the leakage audit, physiology, twin, verdicts)
+  notebooks/NRDI_results.ipynb   shorter executed walk-through of the headline numbers
+  notebooks/out/                 CSV tables and PNG figures written by NRDI_analysis.ipynb
+docs/
+  NRDI_Datasets_Methodology_Results.docx/.pdf   report in the supervisor's format (datasets, methodology, results)
   DATA_RETRIEVAL.md, OPEN_DATASETS.md
 sim/
   SIMULATION_PLAN.md         plan and credibility table for the digital twin
@@ -95,7 +100,7 @@ Notes. The fundus scripts need a CUDA GPU (a laptop RTX 5070 Ti was used; one ep
 | PPG branch (PPG-BP) | `python results/src/ppg_open.py` | `results/out/ppg_open.json`, `ppg_pred.npz` |
 | Results master | `python results/src/build_results_master.py` | `results/RESULTS_MASTER.json` |
 | Figures | `python results/src/figF01_architecture.py` ... `figF13_physio.py`, `figM03_thermal_credibility.py`, `figM04_optical_electrical_pupil.py` | `results/figures/` |
-| Notebook | `jupyter nbconvert --to notebook --execute results/notebooks/NRDI_results.ipynb` | executed notebook |
+| Analysis notebook | `jupyter nbconvert --to notebook --execute results/notebooks/NRDI_analysis.ipynb` (or open it in Jupyter and run all cells; about one minute) | executed notebook, `results/notebooks/out/*.csv` and `*.png` |
 
 Fold-model weights (`results/out/fundus_fold{0-4}.pt`, `fundus_dme{0-4}.pt`, about 110 MB each) are not in the repository; they will be deposited with a DOI on publication and are available on request.
 

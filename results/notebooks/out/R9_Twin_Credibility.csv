@@ -1,0 +1,10 @@
+Quantity,Simulated,Published range
+"Corneal apex temperature (C), 25 C ambient",32.96302482403881,"[34.0, 35.0]"
+Inner canthus skin temperature (C),33.908205188616726,"[35.0, 36.5]"
+Temple skin temperature (C),34.467288672854096,
+MMS observed order of convergence (P1 tetrahedra),1.7870554712587614,theoretical 2
+Largest grid convergence index (%),1.9985430979964074,5 % typical acceptance
+Apex deficit at 50 % choroidal perfusion (C),-0.5434674054764344,0.61 +/- 0.12 clinical NPDR deficit
+Share of deficit seen by 90 deg thermopile,0.28248109104382707,
+Share of deficit seen by 5 deg thermopile,0.1407071467202778,
+Apex slope per C of ambient temperature,0.31728759477488067,

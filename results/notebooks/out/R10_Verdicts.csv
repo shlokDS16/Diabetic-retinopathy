@@ -1,0 +1,9 @@
+Verdict,Quantity from the twin,Design consequence
+1 Thermopile field of view,"90 deg reads 28 mm spot, sees 28 % of deficit; 5 deg sees 14 %",convert reading through the twin's transfer factor
+2 940 nm illuminator,pupil amplitude 0.10 mm at 0 lx vs 2.23 mm at 300 lx,add a visible stimulus of at least 100 lx
+3 Thermopile aim,choroidal Sobol S_T 0.11 at limbus vs 0.00 at canthus,aim at the ocular surface
+4 Contact impedance,68 % of a bipolar reading at 50 kHz,tetrapolar drive and sense
+5 PPG spacing,"arterial share 2.1 % at 880 nm, 3 mm; 35 % at 12 mm with 37x fewer photons",treat as a perfusion index
+6 Electrode geometry,local tetrapolar: orbit+eye+lid share 15.6 %; +10 % orbital water -> -1.39 % vs bipolar total -0.13 %,four local electrodes per eye
+7 Illuminator heating,apex +0.21 C at the 42.3 mW IEC limit = 39 % of the deficit,"pulse the illuminator, read thermopile with it off"
+8 Ambient temperature,S_T 0.74 to 1.01; apex 0.32 C per C ambient,log ambient and compensate

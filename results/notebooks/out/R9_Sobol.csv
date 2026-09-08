@@ -1,0 +1,9 @@
+,apex_C,canthus_C,dci_limbus_C,dci_canthus_C
+choroid_frac,0.081,0.002,0.111,0.001
+skin_perf_frac,0.014,0.116,0.022,0.118
+eyelid_perf_frac,0.015,0.155,0.023,0.155
+orbit_perf_frac,0.002,0.0,0.002,0.0
+T_amb,1.012,0.738,0.956,0.737
+h_skin,0.009,0.107,0.012,0.108
+E_tear,0.029,0.0,0.024,0.0
+k_sclera_scale,0.001,0.0,0.006,0.0

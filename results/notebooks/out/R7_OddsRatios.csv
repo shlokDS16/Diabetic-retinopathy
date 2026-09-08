@@ -1,0 +1,9 @@
+Retinopathy: feature,OR per SD,Neuropathy: feature,OR per SD 
+HbA1c,1.328,HbA1c,1.203
+age,1.264,age,1.18
+insulin_aspart,1.206,musculoskeletal_dis,1.179
+insulin_glarjin,1.152,insulin_aspart,1.171
+kidney_failure,1.142,lipoprotein_met_dis,1.163
+hypertension_i10,1.134,insulin_glarjin,1.148
+insulin_lispro,1.129,pshycoanaleptics,1.132
+Hba1c_change,0.908,ceserian_multiple,0.886
