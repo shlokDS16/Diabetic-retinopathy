@@ -63,9 +63,9 @@ results/
                                  error mechanism, DME head, EHR models with the leakage audit, physiology, twin, verdicts)
   notebooks/NRDI_results.ipynb   shorter executed walk-through of the headline numbers
   notebooks/out/                 CSV tables and PNG figures written by NRDI_analysis.ipynb
+  DATA_RETRIEVAL.md, OPEN_DATASETS.md
 docs/
   NRDI_Datasets_Methodology_Results.docx/.pdf   report in the supervisor's format (datasets, methodology, results)
-  DATA_RETRIEVAL.md, OPEN_DATASETS.md
 sim/
   SIMULATION_PLAN.md         plan and credibility table for the digital twin
   cad/                       parametric frame and sensor layout (build123d)
