@@ -28,7 +28,17 @@ def boundary_faces(tets):
     fs = np.sort(f, axis=1)
     _, idx, cnt = np.unique(fs, axis=0, return_index=True, return_counts=True)
     keep = idx[cnt == 1]
-    return f[keep], owner[keep]
+    f, owner = f[keep], owner[keep]
+    return f, owner
+
+
+def orient_outward(pts, tets, f, owner):
+    """Flip boundary triangles so their normals point away from the owning tetrahedron (consistent shading)."""
+    c_tet = pts[tets[owner]].mean(1); c_f = pts[f].mean(1)
+    n = np.cross(pts[f[:, 1]] - pts[f[:, 0]], pts[f[:, 2]] - pts[f[:, 0]])
+    flip = np.einsum("ij,ij->i", n, c_f - c_tet) < 0
+    f = f.copy(); f[flip] = f[flip][:, [0, 2, 1]]
+    return f
 
 
 def mesh_trace(pts, tri, intensity=None, colors=None, name="", cmin=None, cmax=None, visible=True, showscale=False):
@@ -51,15 +61,15 @@ def main():
     cent = pts[tets].mean(1)
 
     traces, names = [], []
-    tri, own = boundary_faces(tets)
+    tri, own = boundary_faces(tets); tri = orient_outward(pts, tets, tri, own)
     traces.append(mesh_trace(pts, tri, intensity=T, name="temperature, full head", cmin=cmin, cmax=cmax, showscale=True)); names.append("Temperature field")
     for x0 in (26.0, 31.5, 37.0):  # sagittal cuts through the left globe (globe centre x = 31.5 mm)
         keep = cent[:, 0] >= x0
-        tri_c, own_c = boundary_faces(tets[keep])
+        tri_c, own_c = boundary_faces(tets[keep]); tri_c = orient_outward(pts, tets[keep], tri_c, own_c)
         traces.append(mesh_trace(pts, tri_c, intensity=T, name=f"cut at x = {x0:.0f} mm", cmin=cmin, cmax=cmax, showscale=True, visible=False)); names.append(f"Sagittal cut x = {x0:.0f} mm")
     cols = np.array([REGION_COLOR[int(r)] for r in region[own]])
     traces.append(mesh_trace(pts, tri, colors=cols, name="tissue regions", visible=False)); names.append("Tissue regions")
-    keep = cent[:, 0] >= 31.5; tri_c, own_c = boundary_faces(tets[keep]); cols_c = np.array([REGION_COLOR[int(r)] for r in region[np.where(keep)[0][own_c]]])
+    keep = cent[:, 0] >= 31.5; tri_c, own_c = boundary_faces(tets[keep]); tri_c = orient_outward(pts, tets[keep], tri_c, own_c); cols_c = np.array([REGION_COLOR[int(r)] for r in region[np.where(keep)[0][own_c]]])
     traces.append(mesh_trace(pts, tri_c, colors=cols_c, name="tissue regions, cut", visible=False)); names.append("Tissue regions, cut through the globe")
     n_mesh = len(traces)
     # sensors (always shown)
@@ -77,8 +87,8 @@ def main():
     fig = go.Figure(data=traces)
     fig.update_layout(template="plotly_dark", title=dict(text=f"NRDI periorbital finite-element model: steady temperature (Pennes), {len(pts):,} nodes, {len(tets):,} tetrahedra, ambient 25 °C", x=0.02),
                       scene=dict(aspectmode="data", xaxis_title="x lateral (mm)", yaxis_title="y anterior (mm)", zaxis_title="z up (mm)", camera=dict(eye=dict(x=1.6, y=-1.4, z=0.7))),
-                      updatemenus=[dict(type="buttons", direction="right", x=0.02, y=1.02, xanchor="left", yanchor="bottom", buttons=buttons, bgcolor="#222", font=dict(color="white"))],
-                      margin=dict(l=0, r=0, t=90, b=0), height=900)
+                      updatemenus=[dict(type="buttons", direction="right", x=0.02, y=0.985, xanchor="left", yanchor="top", buttons=buttons, bgcolor="#222", font=dict(color="white"))],
+                      margin=dict(l=0, r=0, t=60, b=0), height=900)
     out = ROOT / "sim" / "render" / "out" / "view_fields.html"
     fig.write_html(out, include_plotlyjs=True, full_html=True)
     print("wrote", out, f"({out.stat().st_size/1e6:.1f} MB); {len(tri):,} surface triangles")
